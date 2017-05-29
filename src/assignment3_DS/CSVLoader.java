@@ -1,5 +1,7 @@
 package assignment3_DS;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 /**
  * Created by pv42 on 29.05.2017.
@@ -14,4 +16,6 @@ public class CSVLoader {
     public static Graph loadGraph(String nodeFilePath, String pathFilePath) {
         return null;
     }
+
+    // helpfull import: java.io.FileInputStream see java api for more info
 }
