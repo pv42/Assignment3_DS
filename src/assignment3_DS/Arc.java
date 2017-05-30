@@ -11,11 +11,12 @@ public class Arc {
 
     /**
      * Creates the new object Arc
+     *
      * @param startNode
      * @param endNode
      * @param distance
      */
-    public  Arc(Node startNode, Node endNode, int distance) {
+    public Arc(Node startNode, Node endNode, int distance) {
         this.startNode = startNode;
         this.endNode = endNode;
         this.distance = distance;
@@ -23,6 +24,7 @@ public class Arc {
 
     /**
      * Return an arcs length e.g. distance which must be overcome to reach the
+     *
      * @return the distance from start to end
      */
     public int getDistance() {
@@ -31,6 +33,7 @@ public class Arc {
 
     /**
      * Returns the start of an arc (as Node)
+     *
      * @return the startnode
      */
     public Node getStart() {
@@ -40,9 +43,10 @@ public class Arc {
 
     /**
      * Returns the end of an arc (as Node)
+     *
      * @return the endnode
      */
-    public  Node getEnd() {
+    public Node getEnd() {
         return endNode;
 
     }
