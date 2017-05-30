@@ -12,8 +12,8 @@ public class Node {
     private String mod;
     /**
      * create a Node
-     * @param id
-     * @param mod
+     * @param id nodes ID
+     * @param mod Nodes Speedmodifier
      */
     public Node(int id, String mod) {
         this.id = id;
