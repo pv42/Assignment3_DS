@@ -8,7 +8,7 @@ import java.util.List;
 public class Graph {
 
     public Graph(List<Node> nodes, List<Arc> arcs) {
-        System.out.print(nodes.toString() + arcs.toString());
+        System.out.print(nodes.toString() + arcs.toString()); //remove
         //...
     }
 
