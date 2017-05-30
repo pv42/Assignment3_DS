@@ -40,7 +40,7 @@ public class CSVLoader {
             while ((line = bufferedReader.readLine()) != null) {
 
                 String[] nodeAttributes = line.split(splitBy);
-                if (nodeAttributes != firstLine) {
+                if (nodeAttributes != firstLine) { // todo this does not work
                     Node curNode = new Node(Integer.valueOf(nodeAttributes[0]), nodeAttributes[1]);
                     nodes.add(curNode);
                 }
