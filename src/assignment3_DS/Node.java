@@ -6,6 +6,14 @@ package assignment3_DS;
  */
 public class Node {
 
+    private int id;
+    private String mod;
+
+    public Node(int id, String mod) {
+        this.id = id;
+        this.mod = mod;
+    }
+
     /**
      * Calculates the speed when going through this node
      * @param currentSpeed speed when entering this node
