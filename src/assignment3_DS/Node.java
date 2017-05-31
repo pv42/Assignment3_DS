@@ -3,8 +3,8 @@ package assignment3_DS;
 import java.util.Objects;
 
 /**
- * Created by pv42 on 29.05.2017.
- * Represnets a Node of the
+ * Represnets a Node of the Graph
+ * @author Clemens Deckwart
  */
 public class Node {
 

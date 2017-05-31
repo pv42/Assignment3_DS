@@ -3,7 +3,7 @@ package assignment3_DS;
 /**
  * An arc is the connection between 2 nodes.
  * It contains the distance between the connected Nodes
- * Created on 29.05.2017.
+ * @author Heinrich Sporys
  */
 public class Arc {
     private Node startNode, endNode;
