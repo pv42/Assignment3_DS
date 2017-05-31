@@ -4,8 +4,8 @@ import java.io.*;
 import java.util.*;
 
 /**
- * Created by pv42 on 29.05.2017.
  * This Class is used to load CSV node/arc files.
+ * @author Sebastian Neubert
  */
 public class CSVLoader {
     /**
