@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by pv42 on 29.05.2017.
+ * A graph
+ *
+ * @author Martin Krebs
  */
 public class Graph {
 

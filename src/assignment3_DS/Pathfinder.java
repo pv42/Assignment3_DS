@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * This class is used to find the fastest path between 2 nodes in a graph
  *
- * @author Jörn Roth
+ * @author J&ouml;rn Roth
  */
 public class Pathfinder {
     /**
@@ -57,6 +57,12 @@ public class Pathfinder {
         return activePaths.get(0);
     }
 
+    /**
+     * Inserts an element in a HashMap of Lists of paths with mapkeytype node
+     * @param map map to insert
+     * @param key key determining witch list
+     * @param path object(path) to be inserted
+     */
     private static void addInHahMapList(Map<Node, List<Path>> map, Node key, Path path) {
         map.computeIfAbsent(key, k -> new ArrayList<>()); //lambda for if null create
         map.get(key).add(path);
@@ -71,6 +77,10 @@ public class Pathfinder {
         return true;
     }
 
+    /**
+     * Sorts a list of paths based on their time needed using bubble-sort
+     * @param pathList list to sort
+     */
     private static void sortPathList(List<Path> pathList) {
         boolean changed;
         do {
