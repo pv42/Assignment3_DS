@@ -1,6 +1,7 @@
 package assignment3_DS;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,7 +30,7 @@ public class CSVLoader {
      * @return a list of nodes read from the resource file
      */
     private static List<Node> getNodes(String nodeFilePath) {
-        List<Node> nodes = null;
+        List<Node> nodes = new ArrayList<>();
         String line = "";
         String splitBy = ";";
         BufferedReader bufferedReader = null;
@@ -65,7 +66,7 @@ public class CSVLoader {
      * @return a list of arcs read from the resource file or {@code null} if an arc doesn't find a start or end node
      */
     private static List<Arc> getArcs(String arcFilePath, List<Node> nodes) {
-        List<Arc> arcs = null;
+        List<Arc> arcs = new ArrayList<>();
         String line = "";
         String splitBy = ";";
         BufferedReader bufferedReader = null;

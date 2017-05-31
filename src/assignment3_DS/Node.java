@@ -47,5 +47,11 @@ public class Node {
         return this.id;
     }
 
-
+    @Override
+    public String toString() {
+        return "Node{" +
+                "id=" + id +
+                ", mod='" + mod + '\'' +
+                '}';
+    }
 }
