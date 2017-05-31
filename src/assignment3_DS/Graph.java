@@ -9,7 +9,7 @@ import java.util.Map;
 public class Graph {
 
     public Graph(Map<Integer, Node> nodes, List<Arc> arcs) {
-        System.out.print(nodes.toString() + arcs.toString()); //todo remove
+        System.out.println(nodes.toString() + arcs.toString()); //todo remove
         //...
     }
 
@@ -18,6 +18,10 @@ public class Graph {
     }
 
     public Node getNodeById(int id) {
+        return null;
+    }
+
+    public List<Arc> getAllConnectedArcsByNodeID(int nodeID) {
         return null;
     }
 }

@@ -9,8 +9,9 @@ public class Arc {
     private Node startNode, endNode;
     private int distance;
 
+    //todo !
     /**
-     * Creates the new object Arc
+     * Creates the new arc object
      *
      * @param startNode
      * @param endNode
