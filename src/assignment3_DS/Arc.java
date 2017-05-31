@@ -50,4 +50,13 @@ public class Arc {
         return endNode;
 
     }
+
+    @Override
+    public String toString() {
+        return "Arc{" +
+                "startNode=" + startNode +
+                ", endNode=" + endNode +
+                ", distance=" + distance +
+                '}';
+    }
 }
