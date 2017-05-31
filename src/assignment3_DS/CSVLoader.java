@@ -32,16 +32,18 @@ public class CSVLoader {
         List<Node> nodes = null;
         String line = "";
         String splitBy = ";";
+        String[] firstLine = new String[]{"ID", "modifier"};
         BufferedReader bufferedReader = null;
 
         try {
             bufferedReader = new BufferedReader(new FileReader(nodeFilePath));
-            bufferedReader.readLine();
             while ((line = bufferedReader.readLine()) != null) {
 
                 String[] nodeAttributes = line.split(splitBy);
-                Node curNode = new Node(Integer.valueOf(nodeAttributes[0]), nodeAttributes[1]);
-                nodes.add(curNode);
+                if (nodeAttributes != firstLine) { // todo this does not work
+                    Node curNode = new Node(Integer.valueOf(nodeAttributes[0]), nodeAttributes[1]);
+                    nodes.add(curNode);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -68,29 +70,31 @@ public class CSVLoader {
         List<Arc> arcs = null;
         String line = "";
         String splitBy = ";";
+        String[] firstLine = new String[]{"from", "to", "distance"};
         BufferedReader bufferedReader = null;
 
         try {
             bufferedReader = new BufferedReader(new FileReader(arcFilePath));
-            bufferedReader.readLine();
             while ((line = bufferedReader.readLine()) != null) {
 
                 String[] arcAttributes = line.split(splitBy);
-                Node start = null, end = null;
+                if (arcAttributes != firstLine) {
+                    Node start = null, end = null;
 
-                for (Node node : nodes) {
-                    if (node.getID() == Integer.valueOf(arcAttributes[0])) {
-                        start = node;
+                    for (Node node : nodes) {
+                        if (node.getID() == Integer.valueOf(arcAttributes[0])) {
+                            start = node;
+                        }
+                        if (node.getID() == Integer.valueOf(arcAttributes[1])) {
+                            end = node;
+                        }
                     }
-                    if (node.getID() == Integer.valueOf(arcAttributes[1])) {
-                        end = node;
+                    if (start == null || end == null) {
+                        return null;
+                    } else {
+                        Arc curArc = new Arc(start, end, Integer.valueOf(arcAttributes[2]));
+                        arcs.add(curArc);
                     }
-                }
-                if (start == null || end == null) {
-                    return null;
-                } else {
-                    Arc curArc = new Arc(start, end, Integer.valueOf(arcAttributes[2]));
-                    arcs.add(curArc);
                 }
             }
         } catch (IOException e) {
