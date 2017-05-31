@@ -1,18 +1,19 @@
 package assignment3_DS;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by pv42 on 29.05.2017.
  */
 public class Graph {
 
-    public Graph(List<Node> nodes, List<Arc> arcs) {
+    public Graph(Map<Integer, Node> nodes, List<Arc> arcs) {
         System.out.print(nodes.toString() + arcs.toString()); //todo remove
         //...
     }
 
-    public List<Node> getNodes() {
+    public Map<Integer, Node> getNodes() {
         return null;
     }
 

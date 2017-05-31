@@ -1,8 +1,7 @@
 package assignment3_DS;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by pv42 on 29.05.2017.
@@ -17,7 +16,7 @@ public class CSVLoader {
      * @return the graph with nodes and arcs loaded from files or {@code null} if there was a problem
      */
     public static Graph loadGraph(String nodeFilePath, String arcFilePath) {
-        List<Node> nodes = getNodes(nodeFilePath);
+        Map<Integer, Node> nodes = getNodes(nodeFilePath);
         List<Arc> arcs = getArcs(arcFilePath, nodes);
         if (arcs == null) return null;
         else return new Graph(nodes, arcs);
@@ -29,8 +28,8 @@ public class CSVLoader {
      * @param nodeFilePath indicates the absolute or relative path of the cvs file containing the nodes
      * @return a list of nodes read from the resource file
      */
-    private static List<Node> getNodes(String nodeFilePath) {
-        List<Node> nodes = new ArrayList<>();
+    private static Map<Integer, Node> getNodes(String nodeFilePath) {
+        Map<Integer, Node> nodes = new HashMap<>();
         String line = "";
         String splitBy = ";";
         BufferedReader bufferedReader = null;
@@ -42,7 +41,7 @@ public class CSVLoader {
 
                 String[] nodeAttributes = line.split(splitBy);
                 Node curNode = new Node(Integer.valueOf(nodeAttributes[0]), nodeAttributes[1]);
-                nodes.add(curNode);
+                nodes.put(curNode.getID(), curNode);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -65,7 +64,7 @@ public class CSVLoader {
      * @param nodes       the list of nodes which will be connected by the arcs
      * @return a list of arcs read from the resource file or {@code null} if an arc doesn't find a start or end node
      */
-    private static List<Arc> getArcs(String arcFilePath, List<Node> nodes) {
+    private static List<Arc> getArcs(String arcFilePath, Map<Integer, Node> nodes) {
         List<Arc> arcs = new ArrayList<>();
         String line = "";
         String splitBy = ";";
@@ -77,16 +76,8 @@ public class CSVLoader {
             while ((line = bufferedReader.readLine()) != null) {
 
                 String[] arcAttributes = line.split(splitBy);
-                Node start = null, end = null;
-
-                for (Node node : nodes) {
-                    if (node.getID() == Integer.valueOf(arcAttributes[0])) {
-                        start = node;
-                    }
-                    if (node.getID() == Integer.valueOf(arcAttributes[1])) {
-                        end = node;
-                    }
-                }
+                Node start = nodes.get(Integer.valueOf(arcAttributes[0]));
+                Node end = nodes.get(Integer.valueOf(arcAttributes[1]));
                 if (start == null || end == null) {
                     return null;
                 } else {
