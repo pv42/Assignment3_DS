@@ -17,7 +17,7 @@ public class Graph {
     private List<Arc> arcs;
     /**
      *  creates a graph
-      * @param nodes
+     * @param nodes
      * @param arcs
      */
     public Graph(Map<Integer, Node> nodes, List<Arc> arcs) {
@@ -34,9 +34,9 @@ public class Graph {
     }
 
     /**
-     *
-     * @param id
-     * @return the nodes id
+     * gets the node by id
+     * @param id id of the node
+     * @return node with the id or "null" if it does not exist
      */
     public Node getNodeById(int id) {
         return nodes.get(id);
@@ -44,11 +44,11 @@ public class Graph {
     }
 
     /**
-     * searches for all arcs connected to a node
-     * @param nodeID
+     * searches for all arcs beginning at a node
+     * @param nodeID id of node
      * @return list of arcs connected to node
      */
-    public List<Arc> getAllConnectedArcsByNodeID(int nodeID) {
+    public List<Arc> getAllArcsBeginningAtNodeID(int nodeID) {
          List<Arc> arcList = new ArrayList<>();
          for(Arc arc : arcs){
             if(arc.getStart().getID() == nodeID){

@@ -43,7 +43,7 @@ public class Pathfinder {
             sortPathList(activePaths);
             Path path = activePaths.get(0);
             if (path.getEndNode().getID() == endNodeID) break;
-            List<Arc> arcs = graph.getAllConnectedArcsByNodeID(path.getEndNode().getID());
+            List<Arc> arcs = graph.getAllArcsBeginningAtNodeID(path.getEndNode().getID());
             activePaths.remove(path);
             for (Arc arc : arcs) {
                 Path p = new Path(path);
