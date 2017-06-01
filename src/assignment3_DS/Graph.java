@@ -17,8 +17,8 @@ public class Graph {
     private List<Arc> arcs;
     /**
      *  creates a graph
-     * @param nodes
-     * @param arcs
+     * @param nodes the graphs nodes
+     * @param arcs the graphs arcs
      */
     public Graph(Map<Integer, Node> nodes, List<Arc> arcs) {
         this.nodes = nodes;
