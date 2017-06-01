@@ -12,7 +12,7 @@ public class Node {
     private String mod;
 
     /**
-     * create a Node
+     * creates a Node
      *
      * @param id  nodes ID
      * @param mod Nodes Speedmodifier

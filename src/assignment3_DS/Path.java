@@ -2,7 +2,7 @@ package assignment3_DS;
 
 /**
  * Created by pv42 on 29.05.2017.
- * @author Sebastian Nolte
+ * @author Sebastian Nullte
  */
 public class Path {
     private static final double DEFAULT_START_SPEED = 1;
