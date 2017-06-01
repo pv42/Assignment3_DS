@@ -1,5 +1,6 @@
 package assignment3_DS;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,21 +10,24 @@ import java.util.Map;
  * @author Martin Krebs
  */
 public class Graph {
-
+    private Map<Integer, Node> nodes;
+    private List<Arc> arcs;
     public Graph(Map<Integer, Node> nodes, List<Arc> arcs) {
-        System.out.println(nodes.toString() + arcs.toString()); //todo remove
-        //...
+        this.nodes = nodes;
+        this.arcs= arcs;
     }
 
     public Map<Integer, Node> getNodes() {
-        return null;
+        return nodes;
     }
 
     public Node getNodeById(int id) {
-        return null;
+        return nodes.get(id);
+
     }
 
     public List<Arc> getAllConnectedArcsByNodeID(int nodeID) {
-        return null;
+         List<Arc> arcList = new ArrayList;
+        return  ;
     }
 }
