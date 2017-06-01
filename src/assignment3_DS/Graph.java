@@ -27,7 +27,12 @@ public class Graph {
     }
 
     public List<Arc> getAllConnectedArcsByNodeID(int nodeID) {
-         List<Arc> arcList = new ArrayList;
-        return  ;
+         List<Arc> arcList = new ArrayList<>();
+         for(Arc arc : arcs){
+            if(arc.getStart()){
+
+            }
+         }
+        return ;
     }
 }
