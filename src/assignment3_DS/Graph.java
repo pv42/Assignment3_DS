@@ -36,7 +36,7 @@ public class Graph {
     /**
      * gets the node by id
      * @param id id of the node
-     * @return node with the id or "null" if it does not exist
+     * @return node with the id or null if it does not exist
      */
     public Node getNodeById(int id) {
         return nodes.get(id);
