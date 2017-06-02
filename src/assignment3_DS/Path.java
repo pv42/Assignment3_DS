@@ -31,31 +31,27 @@ public class Path {
     }
 
     public double getTimeNeeded() { //default : startspeed = 1;
-        int distance = 0;
-        Double speed = DEFAULT_START_SPEED;
-        Double speed2;
-        Double totalTime = 0.0;
-        for (int i = 0; i < arcList.size(); i++) {
-            distance =  arcList.get(i).getDistance();
-            speed = arcList.get(i).getStart().applySpeedModifier(DEFAULT_START_SPEED);
-            speed2 = arcList.get(i).getEnd().applySpeedModifier(speed);
-            totalTime = totalTime + (distance/speed2);
-        }
-        return totalTime;
-    }
+        return getTimeNeeded(DEFAULT_START_SPEED);
 
     public double getTimeNeeded(double startSpeed) {
-        return 0;
+            int distance = 0;
+            double speed = DEFAULT_START_SPEED;
+            double totalTime = 0.0;
+            for (int i = 0; i < arcList.size(); i++) {
+                distance =  arcList.get(i).getDistance();
+                speed = arcList.get(i).getStart().applySpeedModifier(speed);
+                totalTime = totalTime + (distance/speed);
+            }
+            return totalTime;
+        }
     }
 
     public double getEndSpeed() { //default : startspeed = 1;
-        Double speed = DEFAULT_START_SPEED;
-        Double speed2;
-        Double totalSpeed = 0.0;
+        double speed = DEFAULT_START_SPEED;
+        double totalSpeed = 0.0;
         for (int i = 0; i < arcList.size(); i++){
-            speed = arcList.get(i).getStart().applySpeedModifier(DEFAULT_START_SPEED);
-            speed2 = arcList.get(i).getStart().applySpeedModifier(speed);
-            totalSpeed = totalSpeed + speed2;
+            speed = arcList.get(i).getStart().applySpeedModifier(speed);
+            totalSpeed = totalSpeed + speed;
         }
         return totalSpeed;
     }
