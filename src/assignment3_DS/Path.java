@@ -10,13 +10,16 @@ import java.util.List;
  */
 public class Path {
     private static final double DEFAULT_START_SPEED = 1;
-
+    private Node startNode;
     private List<Arc> arcList;
+    private double timeNeededChache;
+    private boolean timeNeededChacheUpToDate = false;
 
     /**
      * Creates a path
      */
-    public Path() {
+    public Path(Node startNode) {
+        this.startNode = startNode;
         arcList = new ArrayList<>();
     }
 
@@ -26,7 +29,8 @@ public class Path {
      * @param path path to copy
      */
     public Path(Path path) {
-        arcList = new ArrayList<>(path.getArcList());
+        arcList = new ArrayList<>(path.arcList);
+        startNode = path.getEndNode();
     }
 
     /**
@@ -44,6 +48,7 @@ public class Path {
      * @return last Node
      */
     public Node getEndNode() {
+        if(arcList.isEmpty()) return startNode;
         return arcList.get(arcList.size() - 1).getEnd();
     }
 
@@ -53,11 +58,16 @@ public class Path {
      * @param arc Adds arc
      */
     public void addArc(Arc arc) {
-        arcList.add(arc);
+        if(arc.getStart().getID() == getEndNode().getID()) {
+            arcList.add(arc);
+            timeNeededChacheUpToDate = false;
+        } else {
+            throw new IllegalArgumentException("Arcs start must be last arcs end");
+        }
     }
 
     /**
-     * Calculates the total time needed to finish the path once with speed is equal DEFAULT_START_SPEED at the begin
+     * Calculates the total time needed to finish the path once with speed is equal DEFAULT_START_SPEED(=1) at the begin
      *
      * @return total Time needed to finish path
      */
@@ -68,18 +78,24 @@ public class Path {
     /**
      * Calculates the total time needed to finish the path once
      *
-     * @param startSpeed starting speed while running through the path
+     * @param startSpeed speed before running through the path
      * @return total Time needed to finish path
      */
     public double getTimeNeeded(double startSpeed) { //default : startspeed = 1;
-        int distance = 0;
+        if(timeNeededChacheUpToDate) return timeNeededChache;
         double speed = startSpeed;
         double totalTime = 0.0;
         for (int i = 0; i < arcList.size(); i++) {
-            distance = arcList.get(i).getDistance();
+            double distance = arcList.get(i).getDistance();
             speed = arcList.get(i).getStart().applySpeedModifier(speed);
+            if(speed <= 0) {
+                totalTime = Double.POSITIVE_INFINITY; //Speed must be greater than 0;
+                break;
+            }
             totalTime = totalTime + (distance / speed);
         }
+        timeNeededChacheUpToDate = true;
+        timeNeededChache = totalTime;
         return totalTime;
     }
 
@@ -95,7 +111,7 @@ public class Path {
     /**
      * Calculates the end speed the path reaches after one cycle
      *
-     * @param startSpeed startspeed of node
+     * @param startSpeed speed before running through the path
      * @return total speed after one cycle
      */
     public double getEndSpeed(double startSpeed) {
@@ -119,12 +135,11 @@ public class Path {
     public String toString() {
         String out = "";
         for (int i = 0; i < arcList.size(); i++) {
-            out = out + arcList.get(i).getStart();
-            if (i < (arcList.size() - 1)) {
-                out = out + ",";
-            }
+            out = out + "Node:" +  arcList.get(i).getStart().getID();
+            out = out + ",";
         }
-        return "Path{" + out + "}";
+        out = out + "Node:" +  getEndNode().getID();
+        return "Path{" + out + "} after " + getTimeNeeded() + " with v=" + getEndSpeed();
     }
 
 }

@@ -30,13 +30,14 @@ public class Pathfinder {
     public static Path findFastestPath(Graph graph, int startNodeID, int endNodeID) {
         Node startNode = graph.getNodeById(startNodeID);
         Node endNode = graph.getNodeById(endNodeID);
-        if (startNode == null || endNode == null) return null; // there is no such node with this id
+        System.out.println(startNode + " " + endNode);
+        if (startNode == null || endNode == null) throw new NullPointerException(); // there is no such node with this id
         /*
          *
          */
         Map<Node, List<Path>> pathsToNode = new HashMap<>();
         List<Path> activePaths = new ArrayList<>();
-        Path initPath = new Path();
+        Path initPath = new Path(startNode);
         activePaths.add(initPath); // startpath
         addInHahMapList(pathsToNode, startNode, initPath);
         while (true) {
@@ -47,10 +48,12 @@ public class Pathfinder {
             activePaths.remove(path);
             for (Arc arc : arcs) {
                 Path p = new Path(path);
-                if(!isWorseThanInHML(pathsToNode,p)) {
-                    p.addArc(arc);
-                    activePaths.add(p);
-                    addInHahMapList(pathsToNode,p.getEndNode(),p);
+                if(!isWorseThanInHML(pathsToNode,p) || true) {
+                    if(Double.isFinite(p.getTimeNeeded())) {
+                        p.addArc(arc);
+                        activePaths.add(p);
+                        addInHahMapList(pathsToNode,p.getEndNode(),p);
+                    }
                 }
             }
         }

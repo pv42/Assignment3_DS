@@ -14,6 +14,7 @@ public class Main {
     }
 
     private static void test() { //todo remove
+        long mt0 = System.currentTimeMillis();
         System
                 .out
                 .println(
@@ -24,9 +25,11 @@ public class Main {
                                         "res/nodes.csv",
                                         "res/arces.csv"
                                 ),
-                                1,
+                                0,
                                 21
                         )
                 );
+        long mt1 = System.currentTimeMillis();
+        System.out.println("After " + ((mt1 - mt0 )/ 1000.0) + "s");
     }
 }
