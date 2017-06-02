@@ -64,9 +64,10 @@ public class Path {
 
     @Override
     public String toString() {
-        String out;
+        String out = "";
         for (int i = 0; i < arcList.size(); i++){
             out = out + arcList.get(i).getStart();
+            if (i < (arcList.size()-1)){ out = out + ",";}
         }
         return "Path{" + out + "}";
     }
