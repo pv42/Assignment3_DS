@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by pv42 on 29.05.2017.
+ * This class is used to show a path and calculates time and speed within the graph
+ *
  * @author Sebastian Nolte
  */
 public class Path {
@@ -14,7 +15,7 @@ public class Path {
     private List <Arc> arcList;
 
     /**
-     * Creates Path
+     * Creates a path
      *
      */
     public Path(){
