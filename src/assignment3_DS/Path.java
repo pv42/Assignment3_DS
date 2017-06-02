@@ -32,6 +32,7 @@ public class Path {
 
     public double getTimeNeeded() { //default : startspeed = 1;
         return getTimeNeeded(DEFAULT_START_SPEED);
+    }
 
     public double getTimeNeeded(double startSpeed) {
             int distance = 0;
@@ -43,10 +44,13 @@ public class Path {
                 totalTime = totalTime + (distance/speed);
             }
             return totalTime;
-        }
     }
 
     public double getEndSpeed() { //default : startspeed = 1;
+        return getEndSpeed(DEFAULT_START_SPEED);
+    }
+
+    public double getEndSpeed(double startSpeed) {
         double speed = DEFAULT_START_SPEED;
         double totalSpeed = 0.0;
         for (int i = 0; i < arcList.size(); i++){
@@ -54,10 +58,6 @@ public class Path {
             totalSpeed = totalSpeed + speed;
         }
         return totalSpeed;
-    }
-
-    public double getEndSpeed(double startSpeed) {
-        return 0;
     }
 
     public boolean isBetterThan(Path path) {
