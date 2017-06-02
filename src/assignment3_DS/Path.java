@@ -68,7 +68,7 @@ public class Path {
     /**
      * Calculates the total time needed to finish the path once
      *
-     * @param startSpeed starting speed while running through the üath
+     * @param startSpeed starting speed while running through the path
      * @return total Time needed to finish path
      */
     public double getTimeNeeded(double startSpeed) { //default : startspeed = 1;
