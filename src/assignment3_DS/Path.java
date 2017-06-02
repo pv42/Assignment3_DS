@@ -23,7 +23,7 @@ public class Path {
     /**
      * Makes a copy of our first arcList
      *
-     * @param path
+     * @param path path to copy
      */
     public Path(Path path) {
         arcList = new ArrayList<>(path.getArcList());
@@ -57,18 +57,18 @@ public class Path {
     }
 
     /**
-     * Calculates the total time needed to finish the path once
+     * Calculates the total time needed to finish the path once with speed is equal DEFAULT_START_SPEED at the begin
      *
      * @return total Time needed to finish path
      */
-    public double getTimeNeeded() { //default : startspeed = 1;
+    public double getTimeNeeded() {
         return getTimeNeeded(DEFAULT_START_SPEED);
     }
 
     /**
      * Calculates the total time needed to finish the path once
      *
-     * @param startSpeed startspeed is equal DEFAULT_START_SPEED
+     * @param startSpeed starting speed while running through the üath
      * @return total Time needed to finish path
      */
     public double getTimeNeeded(double startSpeed) { //default : startspeed = 1;
@@ -107,8 +107,9 @@ public class Path {
     }
 
     /**
-     * @param path
-     * @return
+     * indicates if a path is better than an other, meaning generates higher speed and is faster
+     * @param path path to compare with
+     * @return true if this path is faster and generates more speed false otherwise
      */
     public boolean isBetterThan(Path path) {
         return getEndSpeed() >= path.getEndSpeed() && getTimeNeeded() <= path.getTimeNeeded();
