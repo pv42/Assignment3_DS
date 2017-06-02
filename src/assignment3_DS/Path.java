@@ -33,7 +33,7 @@ public class Path {
     public double getTimeNeeded() { //default : startspeed = 1;
         int distance = 0;
         Double speed = DEFAULT_START_SPEED;
-        Double speed2 = DEFAULT_START_SPEED;
+        Double speed2;
         Double totalTime = 0.0;
         for (int i = 0; i < arcList.size(); i++) {
             distance =  arcList.get(i).getDistance();
@@ -50,10 +50,12 @@ public class Path {
 
     public double getEndSpeed() { //default : startspeed = 1;
         Double speed = DEFAULT_START_SPEED;
+        Double speed2;
         Double totalSpeed = 0.0;
-        for (int i; i < arcList.size(); i++){
+        for (int i = 0; i < arcList.size(); i++){
             speed = arcList.get(i).getStart().applySpeedModifier(DEFAULT_START_SPEED);
-            totalSpeed = totalSpeed = speed;
+            speed2 = arcList.get(i).getStart().applySpeedModifier(speed);
+            totalSpeed = totalSpeed + speed2;
         }
         return totalSpeed;
     }
