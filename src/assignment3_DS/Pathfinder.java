@@ -48,7 +48,7 @@ public class Pathfinder {
             activePaths.remove(path);
             for (Arc arc : arcs) {
                 Path p = new Path(path);
-                if(!isWorseThanInHML(pathsToNode,p) || true) {
+                if(!isWorseThanInHML(pathsToNode,p) || true) { //todo what is your intention with "||true"?
                     if(Double.isFinite(p.getTimeNeeded())) {
                         p.addArc(arc);
                         activePaths.add(p);
