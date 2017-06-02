@@ -30,10 +30,14 @@ public class Path {
     }
 
     public double getTimeNeeded() { //default : startspeed = 1;
-
-        // time = getDistance() / (applySpeedModifier();
-        // zeit = weg / geschwindigkeit
-        return getTimeNeeded(DEFAULT_START_SPEED);
+        int distance = 0;
+        Double speed = 0.0;
+        for (int i = 0; i < arcList.size(); i++) {
+            arcList.get(i).getStart();
+            distance = arcList.get(i).getDistance();
+            speed = arcList.get(i).getStart().applySpeedModifier(DEFAULT_START_SPEED);
+        }
+        return distance / speed;
     }
 
     public double getTimeNeeded(double startSpeed) {
@@ -41,7 +45,6 @@ public class Path {
     }
 
     public double getEndSpeed() { //default : startspeed = 1;
-        // hier muss ich die gesamtzeit erfassen, also alle zeiten zusammenrechnen
         return getEndSpeed(DEFAULT_START_SPEED);
     }
 
