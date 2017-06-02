@@ -58,7 +58,7 @@ public class Path {
      * @param startSpeed startspeed is equal DEFAULT_START_SPEED
      * @return total Time needed to finish path
      */
-    public double getTimeNeeded(double startSpeed) {
+    public double getTimeNeeded(double startSpeed) { //default : startspeed = 1;
             int distance = 0;
             double speed = startSpeed;
             double totalTime = 0.0;
