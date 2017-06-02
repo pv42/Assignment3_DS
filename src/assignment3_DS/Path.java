@@ -1,6 +1,5 @@
 package assignment3_DS;
 
-import java.awt.peer.ScrollbarPeer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +11,12 @@ import java.util.List;
 public class Path {
     private static final double DEFAULT_START_SPEED = 1;
 
-    private List <Arc> arcList;
+    private List<Arc> arcList;
 
     /**
      * Creates a path
-     *
      */
-    public Path(){
+    public Path() {
         arcList = new ArrayList<>();
     }
 
@@ -32,7 +30,7 @@ public class Path {
      * @return last Node
      */
     public Node getEndNode() {
-        return arcList.get(arcList.size()-1).getEnd();
+        return arcList.get(arcList.size() - 1).getEnd();
     }
 
     /**
@@ -60,19 +58,19 @@ public class Path {
      * @return total Time needed to finish path
      */
     public double getTimeNeeded(double startSpeed) { //default : startspeed = 1;
-            int distance = 0;
-            double speed = startSpeed;
-            double totalTime = 0.0;
-            for (int i = 0; i < arcList.size(); i++) {
-                distance =  arcList.get(i).getDistance();
-                speed = arcList.get(i).getStart().applySpeedModifier(speed);
-                totalTime = totalTime + (distance/speed);
-            }
-            return totalTime;
+        int distance = 0;
+        double speed = startSpeed;
+        double totalTime = 0.0;
+        for (int i = 0; i < arcList.size(); i++) {
+            distance = arcList.get(i).getDistance();
+            speed = arcList.get(i).getStart().applySpeedModifier(speed);
+            totalTime = totalTime + (distance / speed);
+        }
+        return totalTime;
     }
 
     /**
-     *  Calculates the end speed the path reaches after one cycle
+     * Calculates the end speed the path reaches after one cycle
      *
      * @return total speed after one cycle
      */
@@ -81,21 +79,20 @@ public class Path {
     }
 
     /**
-     *  Calculates the end speed the path reaches after one cycle
+     * Calculates the end speed the path reaches after one cycle
      *
      * @param startSpeed startspeed of node
      * @return total speed after one cycle
      */
     public double getEndSpeed(double startSpeed) {
         double speed = startSpeed;
-        for (int i = 0; i < arcList.size(); i++){
+        for (int i = 0; i < arcList.size(); i++) {
             speed = arcList.get(i).getStart().applySpeedModifier(speed);
         }
         return speed;
     }
 
     /**
-     *
      * @param path
      * @return
      */
@@ -106,9 +103,9 @@ public class Path {
     @Override
     public String toString() {
         String out = "";
-        for (int i = 0; i < arcList.size(); i++){
+        for (int i = 0; i < arcList.size(); i++) {
             out = out + arcList.get(i).getStart();
-            if (i < (arcList.size()-1)){
+            if (i < (arcList.size() - 1)) {
                 out = out + ",";
             }
         }
