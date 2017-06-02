@@ -1,5 +1,6 @@
 package assignment3_DS;
 
+import java.awt.peer.ScrollbarPeer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,13 +32,16 @@ public class Path {
 
     public double getTimeNeeded() { //default : startspeed = 1;
         int distance = 0;
-        Double speed = 0.0;
+        Double speed = DEFAULT_START_SPEED;
+        Double speed2 = DEFAULT_START_SPEED;
+        Double totalTime = 0.0;
         for (int i = 0; i < arcList.size(); i++) {
-            arcList.get(i).getStart();
-            distance = arcList.get(i).getDistance();
+            distance =  arcList.get(i).getDistance();
             speed = arcList.get(i).getStart().applySpeedModifier(DEFAULT_START_SPEED);
+            speed2 = arcList.get(i).getEnd().applySpeedModifier(speed);
+            totalTime = totalTime + (distance/speed2);
         }
-        return distance / speed;
+        return totalTime;
     }
 
     public double getTimeNeeded(double startSpeed) {
@@ -45,7 +49,13 @@ public class Path {
     }
 
     public double getEndSpeed() { //default : startspeed = 1;
-        return getEndSpeed(DEFAULT_START_SPEED);
+        Double speed = DEFAULT_START_SPEED;
+        Double totalSpeed = 0.0;
+        for (int i; i < arcList.size(); i++){
+            speed = arcList.get(i).getStart().applySpeedModifier(DEFAULT_START_SPEED);
+            totalSpeed = totalSpeed = speed;
+        }
+        return totalSpeed;
     }
 
     public double getEndSpeed(double startSpeed) {
