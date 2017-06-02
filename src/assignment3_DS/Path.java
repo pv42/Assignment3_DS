@@ -15,7 +15,7 @@ public class Path {
 
     // initialisiert neue Liste
     public Path(){
-        List<Arc> path = new ArrayList<>();
+        arcList = new ArrayList<>();
     }
 
     public Path(Path path) {}
@@ -36,7 +36,7 @@ public class Path {
 
     public double getTimeNeeded(double startSpeed) {
             int distance = 0;
-            double speed = DEFAULT_START_SPEED;
+            double speed = startSpeed;
             double totalTime = 0.0;
             for (int i = 0; i < arcList.size(); i++) {
                 distance =  arcList.get(i).getDistance();
@@ -51,13 +51,11 @@ public class Path {
     }
 
     public double getEndSpeed(double startSpeed) {
-        double speed = DEFAULT_START_SPEED;
-        double totalSpeed = 0.0;
+        double speed = startSpeed;
         for (int i = 0; i < arcList.size(); i++){
             speed = arcList.get(i).getStart().applySpeedModifier(speed);
-            totalSpeed = totalSpeed + speed;
         }
-        return totalSpeed;
+        return speed;
     }
 
     public boolean isBetterThan(Path path) {
@@ -66,7 +64,11 @@ public class Path {
 
     @Override
     public String toString() {
-        return "Path{}";
+        String out;
+        for (int i = 0; i < arcList.size(); i++){
+            out = out + arcList.get(i).getStart();
+        }
+        return "Path{" + out + "}";
     }
 
 }
