@@ -20,8 +20,22 @@ public class Path {
         arcList = new ArrayList<>();
     }
 
+    /**
+     * Makes a copy of our first arcList
+     *
+     * @param path
+     */
     public Path(Path path) {
+        arcList = new ArrayList<>(path.getArcList());
+    }
 
+    /**
+     * Returns the arcList
+     *
+     * @return arcList
+     */
+    public List<Arc> getArcList() {
+        return arcList;
     }
 
     /**
