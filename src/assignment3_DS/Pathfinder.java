@@ -33,7 +33,6 @@ public class Pathfinder {
         activePaths.add(initPath); // startpath
         while (true) {
             sortPathList(activePaths);
-            System.out.println(activePaths);
             Path path = activePaths.get(0);
             if (path.getEndNode().getID() == endNodeID) break;
             List<Arc> arcs = graph.getAllArcsBeginningAtNodeID(path.getEndNode().getID());
