@@ -19,7 +19,7 @@ public class Main {
         long nt1 = System.nanoTime();
         Path p = Pathfinder.findFastestPath(graph, 0, 21);
         long nt2 = System.nanoTime();
-        System.out.println(p);
+        System.out.println(p.getRunThoughtString());
         System.out.println("After " + ((nt1 - nt0 )/1000000.0) +" + " + ((nt2 - nt1 )/1000000.0) + "ms");
     }
 }

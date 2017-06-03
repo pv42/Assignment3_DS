@@ -25,8 +25,6 @@ public class Pathfinder {
      * @return the fastest path between the nodes or null if  there is no valid path
      */
     public static Path findFastestPath(Graph graph, int startNodeID, int endNodeID) {
-        long time = System.nanoTime();
-        ArrayList<Double> times = new ArrayList<>();
         Node startNode = graph.getNodeById(startNodeID);
         Node endNode = graph.getNodeById(endNodeID);
         if (startNode == null || endNode == null) throw new IllegalArgumentException("Node with id not found in graph"); // there is no such node with this id
@@ -48,27 +46,6 @@ public class Pathfinder {
             }
         }
         return activePaths.get(0);
-    }
-
-    /**
-     * Inserts an element in a HashMap of Lists of paths with mapkeytype node
-     * @param map map to insert
-     * @param key key determining witch list
-     * @param path object(path) to be inserted
-     */
-    private static void addInHahMapList(Map<Node, List<Path>> map, Node key, Path path) {
-        map.computeIfAbsent(key, k -> new ArrayList<>()); //lambda for if null create
-        map.get(key).add(path);
-    }
-
-    private static boolean isBetterInAnyAspect(Map<Node, List<Path>> map, Path path) {
-        List<Path> list = map.get(path.getEndNode());
-        if (list == null) return true;
-        if (list.size() == 0) return true;
-        for (Path p : list) {
-            if (!p.isBetterThan(path)) return true;
-        }
-        return false;
     }
 
     /**

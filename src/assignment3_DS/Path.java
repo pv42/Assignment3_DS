@@ -77,27 +77,8 @@ public class Path {
      *
      * @return total speed after one cycle
      */
-    public double getEndSpeed() { //default : startspeed = 1;
-        return getEndSpeed(DEFAULT_START_SPEED);
-    }
-
-    /**
-     * Calculates the end speed the path reaches after one cycle
-     *
-     * @param startSpeed speed before running through the path
-     * @return total speed after one cycle
-     */
-    public double getEndSpeed(double startSpeed) {
+    public double getEndSpeed() {
         return endSpeed;
-    }
-
-    /**
-     * indicates if a path is better than an other, meaning generates higher speed and is faster
-     * @param path path to compare with
-     * @return true if this path is faster and generates more speed false otherwise
-     */
-    public boolean isBetterThan(Path path) {
-        return getEndSpeed() >= path.getEndSpeed() && getTimeNeeded() <= path.getTimeNeeded();
     }
 
     @Override
@@ -109,6 +90,23 @@ public class Path {
         }
         out = out + "Node:" +  getEndNode().getID();
         return "Path{" + out + "} after " + getTimeNeeded() + " with v=" + getEndSpeed();
+    }
+
+    public String getRunThoughtString() {
+        double speed = 1;
+        double time = 0;
+        double dist = 0;
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < arcList.size(); i++) {
+            Arc arc = arcList.get(i);
+            dist = arc.getDistance();
+            speed = arc.getStart().applySpeedModifier(speed);
+            stringBuilder.append(i+1).append(") von ").append(arc.getStart().getID());
+            stringBuilder.append(" nach ").append(arc.getEnd().getID());
+            stringBuilder.append(" mit Geschwindigkeit ").append(String.format("%d",(long)speed));
+            stringBuilder.append(" in ").append(dist / speed).append(" Zeitschritten").append("\n");
+        }
+        return stringBuilder.toString();
     }
 
 }
