@@ -22,7 +22,7 @@ public class Path {
         this.startNode = startNode;
         arcList = new ArrayList<>();
         timeNeeded = 0;
-        endSpeed = DEFAULT_START_SPEED;
+        endSpeed = startNode.applySpeedModifier(DEFAULT_START_SPEED);
     }
 
     /**
@@ -55,7 +55,7 @@ public class Path {
     public void addArc(Arc arc) {
         if(arc.getStart().getID() == getEndNode().getID()) {
             arcList.add(arc);
-            timeNeeded = timeNeeded + (arc.getDistance()/endSpeed);
+            timeNeeded += (arc.getDistance() / endSpeed);
             endSpeed = arc.getEnd().applySpeedModifier(endSpeed);
             if(endSpeed <= 0) timeNeeded = Double.POSITIVE_INFINITY;
         } else {
@@ -85,26 +85,26 @@ public class Path {
     public String toString() {
         String out = "";
         for (int i = 0; i < arcList.size(); i++) {
-            out = out + "Node:" +  arcList.get(i).getStart().getID();
+            out = out +  arcList.get(i).getStart().getID();
             out = out + ",";
         }
-        out = out + "Node:" +  getEndNode().getID();
-        return "Path{" + out + "} after " + getTimeNeeded() + " with v=" + getEndSpeed();
+        out = out + getEndNode().getID();
+        return "P{" + out + "}(" + getTimeNeeded() + ", " + getEndSpeed()+")";
     }
 
     public String getRunThoughtString() {
         double speed = 1;
         double time = 0;
-        double dist = 0;
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < arcList.size(); i++) {
             Arc arc = arcList.get(i);
-            dist = arc.getDistance();
             speed = arc.getStart().applySpeedModifier(speed);
             stringBuilder.append(i+1).append(") von ").append(arc.getStart().getID());
             stringBuilder.append(" nach ").append(arc.getEnd().getID());
             stringBuilder.append(" mit Geschwindigkeit ").append(String.format("%d",(long)speed));
-            stringBuilder.append(" in ").append(dist / speed).append(" Zeitschritten").append("\n");
+            stringBuilder.append(" in ").append(arc.getDistance()/ speed).append(" Zeitschritten (ingsgesamt: ");
+            time += arc.getDistance()/ speed;
+            stringBuilder.append(time).append(")\n");
         }
         return stringBuilder.toString();
     }

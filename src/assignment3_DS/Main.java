@@ -15,11 +15,12 @@ public class Main {
 
     private static void test() { //todo remove
         long nt0 = System.nanoTime();
-        Graph graph = CSVLoader.loadGraph("res/nodes.csv", "res/arces.csv");
+        Graph graph = CSVLoader.loadGraph("res/test/nodes.csv", "res/test/arces.csv");
         long nt1 = System.nanoTime();
         Path p = Pathfinder.findFastestPath(graph, 0, 21);
         long nt2 = System.nanoTime();
         System.out.println(p.getRunThoughtString());
+        System.out.println(p);
         System.out.println("After " + ((nt1 - nt0 )/1000000.0) +" + " + ((nt2 - nt1 )/1000000.0) + "ms");
     }
 }
