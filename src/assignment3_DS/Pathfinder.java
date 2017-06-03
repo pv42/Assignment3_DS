@@ -48,9 +48,9 @@ public class Pathfinder {
             activePaths.remove(path);
             for (Arc arc : arcs) {
                 Path p = new Path(path);
-                if(!isWorseThanInHML(pathsToNode,p) || true) { //todo what is your intention with "||true"?
+                p.addArc(arc);
+                if(isBetterInAnyAspect(pathsToNode,p)) {
                     if(Double.isFinite(p.getTimeNeeded())) {
-                        p.addArc(arc);
                         activePaths.add(p);
                         addInHahMapList(pathsToNode,p.getEndNode(),p);
                     }
@@ -71,13 +71,14 @@ public class Pathfinder {
         map.get(key).add(path);
     }
 
-    private static boolean isWorseThanInHML(Map<Node, List<Path>> map, Path path) {
+    private static boolean isBetterInAnyAspect(Map<Node, List<Path>> map, Path path) {
         List<Path> list = map.get(path.getEndNode());
-        if (list == null) return false;
+        if (list == null) return true;
+        if (list.size() == 0) return true;
         for (Path p : list) {
-            if (!p.isBetterThan(path)) return false;
+            if (!p.isBetterThan(path)) return true;
         }
-        return true;
+        return false;
     }
 
     /**
@@ -85,10 +86,13 @@ public class Pathfinder {
      * @param pathList list to sort
      */
     private static void sortPathList(List<Path> pathList) {
+       bubbleRevSort(pathList);
+    }
+    private static void bubbleRevSort(List<Path> pathList) {
         boolean changed;
         do {
             changed = false;
-            for (int i = 0; i < pathList.size() - 1; i++) {
+            for (int i = pathList.size() - 2; i >=0; i--) {
                 if (pathList.get(i).getTimeNeeded() > pathList.get(i + 1).getTimeNeeded()) {
                     Path tmp = pathList.get(i);
                     pathList.set(i, pathList.get(i + 1));
