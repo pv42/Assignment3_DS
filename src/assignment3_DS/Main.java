@@ -14,22 +14,12 @@ public class Main {
     }
 
     private static void test() { //todo remove
-        long mt0 = System.currentTimeMillis();
-        System
-                .out
-                .println(
-                        Pathfinder.
-                        findFastestPath(
-                                CSVLoader.
-                                loadGraph(
-                                        "res/nodes.csv",
-                                        "res/arces.csv"
-                                ),
-                                0,
-                                21
-                        )
-                );
-        long mt1 = System.currentTimeMillis();
-        System.out.println("After " + ((mt1 - mt0 )/ 1000.0) + "s");
+        long nt0 = System.nanoTime();
+        Graph graph = CSVLoader.loadGraph("res/nodes.csv", "res/arces.csv");
+        long nt1 = System.nanoTime();
+        Path p = Pathfinder.findFastestPath(graph, 0, 21);
+        long nt2 = System.nanoTime();
+        System.out.println(p);
+        System.out.println("After " + ((nt1 - nt0 )/1000000.0) +" + " + ((nt2 - nt1 )/1000000.0) + "ms");
     }
 }

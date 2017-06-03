@@ -1,9 +1,6 @@
 package assignment3_DS;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * This class is used to find the fastest path between 2 nodes in a graph
@@ -28,18 +25,14 @@ public class Pathfinder {
      * @return the fastest path between the nodes or null if  there is no valid path
      */
     public static Path findFastestPath(Graph graph, int startNodeID, int endNodeID) {
+        long time = System.nanoTime();
+        ArrayList<Double> times = new ArrayList<>();
         Node startNode = graph.getNodeById(startNodeID);
         Node endNode = graph.getNodeById(endNodeID);
-        System.out.println(startNode + " " + endNode);
-        if (startNode == null || endNode == null) throw new NullPointerException(); // there is no such node with this id
-        /*
-         *
-         */
-        Map<Node, List<Path>> pathsToNode = new HashMap<>();
+        if (startNode == null || endNode == null) throw new IllegalArgumentException("Node with id not found in graph"); // there is no such node with this id
         List<Path> activePaths = new ArrayList<>();
         Path initPath = new Path(startNode);
         activePaths.add(initPath); // startpath
-        addInHahMapList(pathsToNode, startNode, initPath);
         while (true) {
             sortPathList(activePaths);
             Path path = activePaths.get(0);
@@ -49,11 +42,8 @@ public class Pathfinder {
             for (Arc arc : arcs) {
                 Path p = new Path(path);
                 p.addArc(arc);
-                if(isBetterInAnyAspect(pathsToNode,p)) {
-                    if(Double.isFinite(p.getTimeNeeded())) {
-                        activePaths.add(p);
-                        addInHahMapList(pathsToNode,p.getEndNode(),p);
-                    }
+                if(Double.isFinite(p.getTimeNeeded())) {
+                    activePaths.add(p);
                 }
             }
         }

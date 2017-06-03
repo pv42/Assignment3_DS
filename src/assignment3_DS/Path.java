@@ -38,24 +38,6 @@ public class Path {
     }
 
     /**
-     * Returns the arcList
-     *
-     * @return arcList
-     */
-    public List<Arc> getArcList() {
-        return arcList;
-    }
-
-    /**
-     * returs the paths start node
-     *
-     * @return the start node
-     */
-    public Node getStartNode() {
-        return startNode;
-    }
-
-    /**
      * Returns the last Node in arcList
      *
      * @return last Node
