@@ -13,9 +13,9 @@ public class Arc {
     /**
      * Creates the new arc object
      *
-     * @param startNode
-     * @param endNode
-     * @param distance
+     * @param startNode Node where arc starts
+     * @param endNode Node where arc ends
+     * @param distance distance between start and end
      */
     public Arc(Node startNode, Node endNode, int distance) {
         this.startNode = startNode;
