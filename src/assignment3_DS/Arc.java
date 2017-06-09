@@ -9,7 +9,7 @@ public class Arc {
     private Node startNode, endNode;
     private int distance;
 
-    //todo !
+
     /**
      * Creates the new arc object
      *

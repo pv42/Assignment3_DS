@@ -14,7 +14,6 @@ public class Pathfinder {
     private Pathfinder() {
     }
 
-    //todo @null
 
     /**
      * Finds the fastest path between 2 nodes
@@ -22,7 +21,7 @@ public class Pathfinder {
      * @param graph       the graph containing both nodes
      * @param startNodeID the start nodes id
      * @param endNodeID   the end nodes id
-     * @return the fastest path between the nodes or null if  there is no valid path
+     * @return the fastest path between the nodes or null if there is no valid path
      */
     public static Path findFastestPath(Graph graph, int startNodeID, int endNodeID) {
         Node startNode = graph.getNodeById(startNodeID);
