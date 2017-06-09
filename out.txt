@@ -14,6 +14,6 @@ shortest Path:
 13) from 23 to 12 with speed 4003003003002998 in 1.249062265566393E-15 timesteps (total: 42.52501563828693)
 14) from 12 to 21 with speed 4003003003003001 in 2.4981245311327843E-16 timesteps (total: 42.52501563828693)
 
-loading graph time:  10.02267 ms
-computing time:      13.05443 ms
-total duration:      23.0771 ms
+loading graph time:  5.769994 ms
+computing time:      9.729962 ms
+total duration:      15.499956 ms

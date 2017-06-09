@@ -1,10 +1,12 @@
 package assignment3_DS;
 
 /**
+ * Main class
+ *
  * @author Julius Lochbaum
  */
 public class Main {
-    // this is a bs aufgabe
+    // maincode
     public static void main(String[] args) {
     	long time1 = System.nanoTime();  
     	
@@ -16,8 +18,8 @@ public class Main {
         Path path = Pathfinder.findFastestPath(graph, 0, 21);
     	long time3 = System.nanoTime();
         
-        //prints this path (path.toString() might be useful)
-    	System.out.println("shortest Path: " + path.toString());
+        //prints this path
+    	System.out.println("shortest Path: \n" + path.getRunThoughtString());
     	
     	//prints the time
     	System.out.println("loading graph time:  " + ((double) (time2 - time1) / 1000000) + " ms");

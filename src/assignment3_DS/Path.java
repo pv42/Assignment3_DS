@@ -17,6 +17,7 @@ public class Path {
 
     /**
      * Creates a path
+     * @param startNode the Node, where the path starts
      */
     public Path(Node startNode) {
         this.startNode = startNode;
@@ -99,10 +100,10 @@ public class Path {
         for (int i = 0; i < arcList.size(); i++) {
             Arc arc = arcList.get(i);
             speed = arc.getStart().applySpeedModifier(speed);
-            stringBuilder.append(i+1).append(") von ").append(arc.getStart().getID());
-            stringBuilder.append(" nach ").append(arc.getEnd().getID());
-            stringBuilder.append(" mit Geschwindigkeit ").append(String.format("%d",(long)speed));
-            stringBuilder.append(" in ").append(arc.getDistance()/ speed).append(" Zeitschritten (ingsgesamt: ");
+            stringBuilder.append(i+1).append(") from ").append(arc.getStart().getID());
+            stringBuilder.append(" to ").append(arc.getEnd().getID());
+            stringBuilder.append(" with speed ").append(String.format("%d",(long)speed));
+            stringBuilder.append(" in ").append(arc.getDistance()/ speed).append(" timesteps (total: ");
             time += arc.getDistance()/ speed;
             stringBuilder.append(time).append(")\n");
         }
