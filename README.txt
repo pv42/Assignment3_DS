@@ -5,3 +5,4 @@ und findet den kürzesten Pfad in einem speziellen Graph.
 Anspruch erheben, das dies eine Dokumentation ist.
 -Wie wir ihnen bereits gemailt hatten, ist die eigentliche Lösung ein unendlich langer Pfad, und unser Programm findet
 nur einen solchen Pfad, der in der double Genauigkeit einer der schnellsten Pfade ist.
+-Das Programm beötigt die Dateien arces.csv, nodes.csv in einem Unterverzeichnis res.
