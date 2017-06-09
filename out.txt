@@ -1,0 +1,19 @@
+shortest Path:
+1) from 0 to 7 with speed 1 in 30.0 timesteps (total: 30.0)
+2) from 7 to 13 with speed 4 in 12.5 timesteps (total: 42.5)
+3) from 13 to 7 with speed 4000 in 0.0125 timesteps (total: 42.5125)
+4) from 7 to 13 with speed 4003 in 0.012490632025980514 timesteps (total: 42.52499063202598)
+5) from 13 to 7 with speed 4003000 in 1.2490632025980514E-5 timesteps (total: 42.525003122658006)
+6) from 7 to 13 with speed 4003003 in 1.2490622665034226E-5 timesteps (total: 42.52501561328067)
+7) from 13 to 7 with speed 4003003000 in 1.2490622665034225E-8 timesteps (total: 42.525015625771296)
+8) from 7 to 13 with speed 4003003003 in 1.2490622655673287E-8 timesteps (total: 42.52501563826192)
+9) from 13 to 7 with speed 4003003003000 in 1.2490622655673286E-11 timesteps (total: 42.52501563827441)
+10) from 7 to 13 with speed 4003003003003 in 1.2490622655663925E-11 timesteps (total: 42.5250156382869)
+11) from 13 to 7 with speed 4003003003003000 in 1.2490622655663926E-14 timesteps (total: 42.525015638286916)
+12) from 7 to 23 with speed 4003003003003003 in 1.2490622655663916E-14 timesteps (total: 42.52501563828693)
+13) from 23 to 12 with speed 4003003003002998 in 1.249062265566393E-15 timesteps (total: 42.52501563828693)
+14) from 12 to 21 with speed 4003003003003001 in 2.4981245311327843E-16 timesteps (total: 42.52501563828693)
+
+loading graph time:  10.02267 ms
+computing time:      13.05443 ms
+total duration:      23.0771 ms
