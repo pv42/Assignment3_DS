@@ -1,4 +1,4 @@
-package assignment3_DS;
+package assignment3_DS.model;
 
 import java.io.*;
 import java.util.*;

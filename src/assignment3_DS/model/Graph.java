@@ -1,6 +1,7 @@
-package assignment3_DS;
+package assignment3_DS.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -60,5 +61,31 @@ public class Graph {
             }
         }
         return arcList;
+    }
+
+    //methodes added with Assignment4
+
+    public Iterator<Node> getAllNodes() { //a
+        //...
+        return null;
+    }
+    public int getNodeNumber() { //b
+        //...
+        return -1;
+    }
+    public List<String> getNodeOperations() { //c
+        //...
+        return null;
+    }
+    public int getArcNumber() { //d
+        //...
+        return -1;
+    }
+    public int getArcLenghtSum() { //e
+        //...
+        return -1;
+    }
+    public void removeArcsLongerThan(int x) { //f
+        //...
     }
 }
