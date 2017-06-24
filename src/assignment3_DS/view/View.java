@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
+
 import assignment3_DS.controller.Controller;
 import assignment3_DS.model.Model;
 
@@ -60,6 +63,27 @@ public class View {
                 Controller.removeArcsGreaterThen(Integer.parseInt(textInputWeight.getText()));
             }
         });
+
+        Observer observerArcCount = new Observer(){
+            @Override
+            public void  update(Observable o, Object arg){
+                countArcInt.setText(((Integer)arg).toString());
+            }
+        };
+
+        Observer observerNodeCount = new Observer(){
+            @Override
+            public void  update(Observable o, Object arg){
+                countNodeInt.setText(((Integer)arg).toString());
+            }
+        };
+
+        Observer observerSumArc = new Observer(){
+            @Override
+            public void  update(Observable o, Object arg){
+                sumArcWeightInt.setText(((Integer)arg).toString());
+            }
+        };
     }
 
     public static void main(String[] args) {
