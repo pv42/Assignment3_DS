@@ -1,4 +1,7 @@
-package assignment3_DS.model;
+package assignment3_DS.graph;
+
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Main class
@@ -7,8 +10,9 @@ package assignment3_DS.model;
  */
 public class Main {
     // maincode
-    public static void main(String[] args) {
-    	long time1 = System.nanoTime();  
+
+    public static void assignment3() {
+    	long time1 = System.nanoTime();
     	
         //loads graph from "res/nodes.csv","res/arces.csv" using CSVLoader
     	Graph graph = CSVLoader.loadGraph("res/nodes.csv", "res/arces.csv");
@@ -25,7 +29,13 @@ public class Main {
     	System.out.println("loading graph time:  " + ((double) (time2 - time1) / 1000000) + " ms");
     	System.out.println("computing time:      " + ((double) (time3 - time2) / 1000000) + " ms");
     	System.out.println("total duration:      " + ((double) (time3 - time1) / 1000000) + " ms");
-    	
+		Observer observer = new Observer() {
+			@Override
+			public void update(Observable o, Object arg) {
+
+			}
+		};
+		Observable observable = new Observable();
     }
 
 }

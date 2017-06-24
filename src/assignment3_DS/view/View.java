@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import assignment3_DS.controller.Controller;
+import assignment3_DS.model.Model;
 
 /**
  * Created by HSpor on 19.06.2017.
@@ -39,7 +40,7 @@ public class View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //prints a list of all arcs into the mainText
-                Controller.requestNodeList();
+                Model.requestNodeList();
 
             }
         });
@@ -47,7 +48,7 @@ public class View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //prints a list of all operations into the mainText
-                Controller.requestOperationList();
+                Model.requestOperationList();
 
             }
         });
@@ -55,6 +56,7 @@ public class View {
         removeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // i need to find a solution !
                 Controller.removeArcsGreaterThen(Integer.parseInt(textInputWeight.getText()));
             }
         });

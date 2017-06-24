@@ -1,4 +1,4 @@
-package assignment3_DS.model;
+package assignment3_DS.graph;
 
 /**
  * An arc is the connection between 2 nodes.

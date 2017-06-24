@@ -1,4 +1,4 @@
-package assignment3_DS.model;
+package assignment3_DS.graph;
 
 import java.util.*;
 
