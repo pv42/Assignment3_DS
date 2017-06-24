@@ -92,7 +92,7 @@ public class MainWindow {
             public void update(Observable o, Object arg) {
                 mainText.setText(arg.toString());
             }
-        }
+        };
 
         registerObservers(arcCountObserver, nodeCountObserver, sumArcObserver, mainTextObserver);
     }
