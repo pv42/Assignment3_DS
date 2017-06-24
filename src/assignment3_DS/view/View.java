@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import assignment3_DS.controller.Controller;
 
 /**
  * Created by HSpor on 19.06.2017.
@@ -12,7 +13,7 @@ public class View {
     private JButton loadGraphButton;
     private JTextArea mainText;
     private JPanel mainPanel;
-    private JButton outputArcsButton;
+    private JButton outputNodesButton;
     private JButton outputOperationsButton;
     private JButton removeButton;
     private JPanel countNodesPanel;
@@ -34,25 +35,27 @@ public class View {
                 //open a window to load a new graph on click
             }
         });
-        outputArcsButton.addActionListener(new ActionListener() {
+        outputNodesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //prints a list of all arcs into the mainText
-                forEachRemaining(Consumer < ? super E > mainText.setText("lorem ipsum arcs"));
+                Controller.requestNodeList();
+
             }
         });
         outputOperationsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //prints a list of all operations into the mainText
+                Controller.requestOperationList();
 
-                forEachRemaining(Consumer < ? super E > mainText.setText("lorem ipsum operations"));
             }
         });
+
         removeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //removes all arcs greater then the int in textInputWeight
+                Controller.removeArcsGreaterThen(Integer.parseInt(textInputWeight.getText()));
             }
         });
     }
@@ -93,9 +96,9 @@ public class View {
         loadGraphButton = new JButton();
         loadGraphButton.setText("load graph");
         mainPanel.add(loadGraphButton, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        outputArcsButton = new JButton();
-        outputArcsButton.setText("output arc list");
-        mainPanel.add(outputArcsButton, new com.intellij.uiDesigner.core.GridConstraints(2, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        outputNodesButton = new JButton();
+        outputNodesButton.setText("output arc list");
+        mainPanel.add(outputNodesButton, new com.intellij.uiDesigner.core.GridConstraints(2, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         countNodesPanel = new JPanel();
         countNodesPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         mainPanel.add(countNodesPanel, new com.intellij.uiDesigner.core.GridConstraints(3, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
