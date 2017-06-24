@@ -16,7 +16,7 @@ public class Model {
         //todo
     }
 
-    public static void registerObservers(Observer arcCountObserver, Observer nodeCountObserver, Observer sumArcWeightObserver) {
+    public static void registerObservers(Observer arcCountObserver, Observer nodeCountObserver, Observer sumArcWeightObserver, Observer mainTextObserver) {
         // todo
     }
 

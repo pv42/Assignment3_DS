@@ -10,10 +10,12 @@ import java.util.Observer;
 import assignment3_DS.controller.Controller;
 import assignment3_DS.model.Model;
 
+import static assignment3_DS.model.Model.registerObservers;
+
 /**
  * Created by HSpor on 19.06.2017.
  */
-public class View {
+public class MainWindow {
     private JButton loadGraphButton;
     private JTextArea mainText;
     private JPanel mainPanel;
@@ -32,7 +34,7 @@ public class View {
     private JLabel sumArcWeightText;
     private JLabel sumArcWeightInt;
 
-    public View() {
+    public MainWindow() {
         loadGraphButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -64,39 +66,48 @@ public class View {
             }
         });
 
-        Observer observerArcCount = new Observer(){
+        Observer arcCountObserver = new Observer(){
             @Override
             public void  update(Observable o, Object arg){
                 countArcInt.setText(((Integer)arg).toString());
             }
         };
 
-        Observer observerNodeCount = new Observer(){
+        Observer nodeCountObserver = new Observer(){
             @Override
             public void  update(Observable o, Object arg){
                 countNodeInt.setText(((Integer)arg).toString());
             }
         };
 
-        Observer observerSumArc = new Observer(){
+        Observer sumArcObserver = new Observer(){
             @Override
             public void  update(Observable o, Object arg){
                 sumArcWeightInt.setText(((Integer)arg).toString());
             }
         };
+
+        Observer mainTextObserver = new Observer() {
+            @Override
+            public void update(Observable o, Object arg) {
+                mainText.setText(arg.toString());
+            }
+        }
+
+        registerObservers(arcCountObserver, nodeCountObserver, sumArcObserver, mainTextObserver);
     }
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("this is no placeholder");
-        frame.setContentPane(new View().mainPanel);
+        frame.setContentPane(new MainWindow().mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
 
     public static JFrame createGui(String[] args) {
-        JFrame frame = new JFrame("this is no placeholder");
-        frame.setContentPane(new View().mainPanel);
+        JFrame frame = new JFrame("Graphinsight");
+        frame.setContentPane(new MainWindow().mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         return frame;
