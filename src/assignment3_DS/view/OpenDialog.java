@@ -1,5 +1,7 @@
 package assignment3_DS.view;
 
+import assignment3_DS.controller.Controller;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
@@ -77,12 +79,11 @@ public class OpenDialog extends JDialog {
                 final int result = chooser.showOpenDialog(null);
 
                 if (result == JFileChooser.APPROVE_OPTION) {
-                    File inputVerzFile = chooser.getSelectedFile();
-                      nodeFilePath = inputVerzFile;
-                    String inputVerzStr = inputVerzFile.getPath();
-                    System.out.println("Input path:" + inputVerzStr);
+                    File inputDirectoryFile = chooser.getSelectedFile();
+                      nodeFilePath = inputDirectoryFile;
+
+
                 }
-                System.out.println("Cancel");
                 chooser.setVisible(false);
             }
         });
@@ -111,19 +112,17 @@ public class OpenDialog extends JDialog {
                 final int result = chooser.showOpenDialog(null);
 
                 if (result == JFileChooser.APPROVE_OPTION) {
-                    File inputVerzFile = chooser.getSelectedFile();
-                    arcFilePath = inputVerzFile;
-                    String inputVerzStr = inputVerzFile.getPath();
-                    System.out.println("Input path:" + inputVerzStr);
+                    File inputDirectoryFile = chooser.getSelectedFile();
+                    arcFilePath = inputDirectoryFile;
+
                 }
-                System.out.println("Cancel");
                 chooser.setVisible(false);
             }
         });
     }
 
     private void onOK() {
-        // add your code here
+        Controller.loadGraph(nodeFilePath, arcFilePath);
         dispose();
     }
 
