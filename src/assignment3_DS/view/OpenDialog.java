@@ -132,8 +132,16 @@ public class OpenDialog extends JDialog {
 
     public static void main(String[] args) {
         OpenDialog dialog = new OpenDialog();
+        dialog.setTitle("Graph Data");
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
+    }
+    public static OpenDialog createGUI() {
+        OpenDialog dialog = new OpenDialog();
+        dialog.setTitle("Graph Data");
+        dialog.pack();
+        dialog.setVisible(true);
+        return dialog;
     }
 }
