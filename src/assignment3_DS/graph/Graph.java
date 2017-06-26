@@ -66,26 +66,54 @@ public class Graph {
     //methodes added with Assignment4
 
     public Iterator<Node> getAllNodes() { //a
-        //...
-        return null;
+        List<Node> list = new ArrayList<Node>();
+        for (int i = 0; i < nodes.size(); i++){
+        	list.add(nodes.get(i));
+        }
+        return list.iterator();
     }
+    
+    
     public int getNodeNumber() { //b
-        //...
-        return -1;
+        return nodes.size();
     }
+    
+    
     public List<String> getNodeOperations() { //c
-        //...
-        return null;
+        List<String> list = new ArrayList<String>();
+    	
+    	for (int i = 0; i < nodes.size(); i++){
+        	String operation = nodes.get(i).toString().split("'")[1];
+        	if (!list.contains(operation)){
+        		list.add(operation);
+        	}
+        }
+    	
+    	return list;
     }
+    
+    
     public int getArcNumber() { //d
-        //...
-        return -1;
+        return arcs.size();
     }
+    
+    
     public int getArcLenghtSum() { //e
-        //...
-        return -1;
+        int sum = 0;
+        for (int i = 0; i < arcs.size(); i++){
+        	sum += arcs.get(i).getDistance();
+        }
+    	return sum;
     }
-    public void removeArcsLongerThan(int x) { //f
-        //...
+    
+    
+    public void removeArcsLongerThan(final int x) { //f
+        Iterator<Arc> it = arcs.iterator(); 
+    	while(it.hasNext()){
+    	    Arc arc = it.next();
+    	    if(arc.getDistance() > x){
+    	        it.remove();
+    	    }
+    	}
     }
 }
