@@ -6,7 +6,7 @@ import java.io.File;
  * Created on 23.06.2017.
  */
 public class Controller {
-    static public void removeArcsGreaterThen(int weight) {
+    static public void removeArcsLongerThan(int weight) {
         // todo
     }
     public static void loadGraph(File nodeFile, File arcFile) {

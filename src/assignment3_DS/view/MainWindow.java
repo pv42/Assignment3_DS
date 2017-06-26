@@ -64,7 +64,7 @@ public class MainWindow {
             public void actionPerformed(ActionEvent e) {
                 // i need to find a solution !
                 try {
-                    Controller.removeArcsGreaterThen(Integer.parseInt(textInputWeight.getText()));
+                    Controller.removeArcsLongerThan(Integer.parseInt(textInputWeight.getText()));
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Input is not a number", "Error", JOptionPane.ERROR_MESSAGE);
 
