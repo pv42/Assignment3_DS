@@ -38,6 +38,7 @@ public class MainWindow {
         loadGraphButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                OpenDialog.createGUI();
                 //open a window to load a new graph on click
             }
         });
