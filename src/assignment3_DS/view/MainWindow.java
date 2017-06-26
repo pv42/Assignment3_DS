@@ -63,28 +63,33 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // i need to find a solution !
-                Controller.removeArcsGreaterThen(Integer.parseInt(textInputWeight.getText()));
+                try {
+                    Controller.removeArcsGreaterThen(Integer.parseInt(textInputWeight.getText()));
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Input is not a number", "Error", JOptionPane.ERROR_MESSAGE);
+
+                }
             }
         });
 
-        Observer arcCountObserver = new Observer(){
+        Observer arcCountObserver = new Observer() {
             @Override
-            public void  update(Observable o, Object arg){
-                countArcInt.setText(((Integer)arg).toString());
+            public void update(Observable o, Object arg) {
+                countArcInt.setText(((Integer) arg).toString());
             }
         };
 
-        Observer nodeCountObserver = new Observer(){
+        Observer nodeCountObserver = new Observer() {
             @Override
-            public void  update(Observable o, Object arg){
-                countNodeInt.setText(((Integer)arg).toString());
+            public void update(Observable o, Object arg) {
+                countNodeInt.setText(((Integer) arg).toString());
             }
         };
 
-        Observer sumArcObserver = new Observer(){
+        Observer sumArcObserver = new Observer() {
             @Override
-            public void  update(Observable o, Object arg){
-                sumArcWeightInt.setText(((Integer)arg).toString());
+            public void update(Observable o, Object arg) {
+                sumArcWeightInt.setText(((Integer) arg).toString());
             }
         };
 
@@ -99,14 +104,10 @@ public class MainWindow {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("this is no placeholder");
-        frame.setContentPane(new MainWindow().mainPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+        createGui().setVisible(true);
     }
 
-    public static JFrame createGui(String[] args) {
+    public static JFrame createGui() {
         JFrame frame = new JFrame("Graphinsight");
         frame.setContentPane(new MainWindow().mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -135,7 +136,7 @@ public class MainWindow {
         loadGraphButton.setText("load graph");
         mainPanel.add(loadGraphButton, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         outputNodesButton = new JButton();
-        outputNodesButton.setText("output arc list");
+        outputNodesButton.setText("output node list");
         mainPanel.add(outputNodesButton, new com.intellij.uiDesigner.core.GridConstraints(2, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         countNodesPanel = new JPanel();
         countNodesPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
@@ -180,7 +181,7 @@ public class MainWindow {
         textInputWeight = new JTextField();
         panel1.add(textInputWeight, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(20, -1), new Dimension(20, -1), null, 0, false));
         buttondescriptionText = new JLabel();
-        buttondescriptionText.setText("Remove all arce with a weight bigger than:");
+        buttondescriptionText.setText("Remove all arcs with a weight bigger than:");
         panel1.add(buttondescriptionText, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
     }
 
