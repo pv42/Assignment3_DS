@@ -46,6 +46,10 @@ public class Node {
     public int getID() {
         return this.id;
     }
+    
+    public String getSpeedModifier() {
+        return mod;
+    }
 
     @Override
     public String toString() {
