@@ -36,10 +36,7 @@ public class MainWindow {
         Observer arcCountObserver = (o, arg) -> countArcInt.setText(((Integer) arg).toString());
         Observer nodeCountObserver = (o, arg) -> countNodeInt.setText(((Integer) arg).toString());
         Observer sumArcObserver = (o, arg) -> sumArcWeightInt.setText(((Integer) arg).toString());
-        Observer mainTextObserver = (o, arg) -> {
-            mainText.setText(arg.toString());
-            System.out.println("MTOU");
-        };
+        Observer mainTextObserver = (o, arg) -> mainText.setText(arg.toString());
 
         this.model.registerObservers(arcCountObserver, nodeCountObserver, sumArcObserver, mainTextObserver);
 
