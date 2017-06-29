@@ -121,7 +121,7 @@ public class OpenDialog extends JDialog {
     }
 
     private void onOK() {
-        Controller.loadGraph(nodeFilePath, arcFilePath);
+        Controller.loadGraph(nodeFilePath, arcFilePath); //todo
         dispose();
     }
 

@@ -1,5 +1,6 @@
 package assignment3_DS.model;
 
+import assignment3_DS.controller.MyObservable;
 import assignment3_DS.graph.Graph;
 
 import java.util.ArrayList;
@@ -12,31 +13,37 @@ import java.util.Observer;
  */
 public class Model {
     private Graph graph;
-    private Observable arcCountObservable;
-    private Observable nodeCountObserable;
-    private Observable sumArcWeightObserable;
-    private Observable mainTextObservable;
+    private MyObservable arcCountObservable;
+    private MyObservable nodeCountObservable;
+    private MyObservable sumArcWeightObservable;
+    private MyObservable mainTextObservable;
 
     public Model() {
-        graph = new Graph(new HashMap<>(),new ArrayList<>()); // empty graph
-        arcCountObservable = new Observable();
-        //arcCountObservable.
+        graph = new Graph(new HashMap<>(), new ArrayList<>()); // empty graph
+        arcCountObservable = new MyObservable();
+        nodeCountObservable = new MyObservable();
+        sumArcWeightObservable = new MyObservable();
+        mainTextObservable = new MyObservable();
+        //arcCountObservable
     }
     // todo remove static
 
-    static public void requestNodeList(){
-        //todo
+    public void requestNodeList(){
+        mainTextObservable.notifyChanged("Node List:");
     }
 
-    static public void requestOperationList(){
-        //todo
+    public void requestOperationList(){
+        mainTextObservable.notifyChanged("Ops List:");
+    }
+
+    public void setGraph(Graph graph) {
+        this.graph = graph;
     }
 
     public void registerObservers(Observer arcCountObserver, Observer nodeCountObserver, Observer sumArcWeightObserver, Observer mainTextObserver) {
         arcCountObservable.addObserver(arcCountObserver);
-        nodeCountObserable.addObserver(nodeCountObserver);
-        sumArcWeightObserable.addObserver(sumArcWeightObserver);
+        nodeCountObservable.addObserver(nodeCountObserver);
+        sumArcWeightObservable.addObserver(sumArcWeightObserver);
         mainTextObservable.addObserver(mainTextObserver);
     }
-
 }
