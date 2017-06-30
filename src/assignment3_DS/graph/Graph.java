@@ -1,4 +1,4 @@
-package assignment3_DS;
+package assignment3_DS.graph;
 
 import java.util.ArrayList;
 import java.util.Iterator;
