@@ -23,7 +23,6 @@ public class Model {
         nodeCountObservable = new MyObservable();
         sumArcWeightObservable = new MyObservable();
         mainTextObservable = new MyObservable();
-        //arcCountObservable
     }
 
     public void requestNodeList(){
@@ -36,9 +35,7 @@ public class Model {
 
     public void setGraph(Graph graph) {
         this.graph = graph;
-        arcCountObservable.notifyChanged(graph.getArcNumber());
-        nodeCountObservable.notifyChanged(graph.getNodeNumber());
-        sumArcWeightObservable.notifyChanged(graph.getArcLengthSum());
+       notifyAllObservers();
     }
 
     public void registerObservers(Observer arcCountObserver, Observer nodeCountObserver, Observer sumArcWeightObserver, Observer mainTextObserver) {
@@ -50,5 +47,12 @@ public class Model {
 
     public void removeArcsLongerThan(int weight) {
         graph.removeArcsLongerThan(weight);
+        notifyAllObservers();
+    }
+
+    private void notifyAllObservers() {
+        arcCountObservable.notifyChanged(graph.getArcNumber());
+        nodeCountObservable.notifyChanged(graph.getNodeNumber());
+        //sumArcWeightObservable.notifyChanged(graph.getArcLengthSum()); //todo use this after fixing it
     }
 }
