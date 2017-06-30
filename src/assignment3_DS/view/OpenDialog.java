@@ -132,7 +132,6 @@ public class OpenDialog extends JDialog {
     }
 
     private void onOK() {
-        //((Controller.loadGraph(nodeFilePath, arcFilePath); //todo
         if(arcFilePath == null || nodeFilePath == null) {
             dispose();
             return;
@@ -148,7 +147,7 @@ public class OpenDialog extends JDialog {
 
     public static void main(String[] args) {
         OpenDialog dialog = new OpenDialog(null);
-
+        dialog.setupAndShow();
         System.exit(0);
     }
 

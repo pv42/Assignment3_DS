@@ -56,7 +56,7 @@ public class Controller {
         model.removeArcsLongerThan(weight);
     }
     public void loadGraph(File nodeFile, File arcFile) {
-        model.setGraph(CSVLoader.loadGraph(nodeFile,arcFile));
+        new Thread(() -> model.setGraph(CSVLoader.loadGraph(nodeFile,arcFile))).start();
     }
 
 

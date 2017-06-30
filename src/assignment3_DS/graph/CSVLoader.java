@@ -72,9 +72,8 @@ public class CSVLoader {
      * @return a list of arcs read from the resource file or {@code null} if an arc doesn't find a start or end node
      */
     private static List<Arc> getArcs(File arcFilePath, Map<Integer, Node> nodes) {
-        System.out.println("load arc from" + arcFilePath);
         List<Arc> arcs = new ArrayList<>();
-        String line = "";
+        String line;
         String splitBy = ";";
         BufferedReader bufferedReader = null;
 
@@ -82,7 +81,6 @@ public class CSVLoader {
             bufferedReader = new BufferedReader(new FileReader(arcFilePath));
             bufferedReader.readLine();
             while ((line = bufferedReader.readLine()) != null) {
-                System.out.println("ln:" + line);
                 String[] arcAttributes = line.split(splitBy);
                 Node start = nodes.get(Integer.valueOf(arcAttributes[0]));
                 Node end = nodes.get(Integer.valueOf(arcAttributes[1]));
