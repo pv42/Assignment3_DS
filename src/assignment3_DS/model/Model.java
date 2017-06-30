@@ -35,7 +35,7 @@ public class Model {
 
     public void setGraph(Graph graph) {
         this.graph = graph;
-       notifyAllObservers();
+        notifyAllObservers();
     }
 
     public void registerObservers(Observer arcCountObserver, Observer nodeCountObserver, Observer sumArcWeightObserver, Observer mainTextObserver) {

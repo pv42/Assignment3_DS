@@ -41,6 +41,7 @@ public class MainWindow {
         this.model.registerObservers(arcCountObserver, nodeCountObserver, sumArcObserver, mainTextObserver);
 
         JFrame frame = new JFrame("Graphinsight");
+        frame.setResizable(false);
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();

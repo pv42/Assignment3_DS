@@ -6,7 +6,6 @@ import assignment3_DS.view.MainWindow;
 import assignment3_DS.view.OpenDialog;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
@@ -20,26 +19,17 @@ public class Controller {
     public Controller(){
         model = new Model();
         MainWindow mainWindow = new MainWindow(model);
-        ActionListener loadFromFileActionListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                loadGraph(openDialog.getNodeFilePath(), openDialog.getArcFilePath());
-            }
-        };
+        ActionListener loadFromFileActionListener = e -> loadGraph(openDialog.getNodeFilePath(), openDialog.getArcFilePath());
         ActionListener requestLoadGraphActionListener = e -> {
             openDialog = new OpenDialog(loadFromFileActionListener);
             openDialog.setupAndShow();
             //open a window to load a new graph on click
         };
-        ActionListener outputNodesActionListener = e -> {
-            //prints a list of all arcs into the mainText
-            model.requestNodeList();
 
-        };
-        ActionListener outputOperationsActionListener = e -> {
-            //prints a list of all operations into the mainText
-            model.requestOperationList();
-        };
+        ActionListener outputNodesActionListener = e -> model.requestNodeList();
+
+        ActionListener outputOperationsActionListener = e -> model.requestOperationList();
+
         ActionListener removeActionListener = e -> {
 
             try {
