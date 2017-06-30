@@ -38,7 +38,7 @@ public class Model {
         this.graph = graph;
         arcCountObservable.notifyChanged(graph.getArcNumber());
         nodeCountObservable.notifyChanged(graph.getNodeNumber());
-        sumArcWeightObservable.notifyChanged(graph.getArcLengthSum());
+        //sumArcWeightObservable.notifyChanged(graph.getArcLengthSum()); //todo use this after fixing it
     }
 
     public void registerObservers(Observer arcCountObserver, Observer nodeCountObserver, Observer sumArcWeightObserver, Observer mainTextObserver) {
