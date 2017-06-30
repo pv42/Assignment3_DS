@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /**
  * Represnets a Node of the Graph
- * @author Clemens Deckwart
+ * @author Clemens Deckwart, pv42, jloc
  */
 public class Node {
 
@@ -53,9 +53,8 @@ public class Node {
 
     @Override
     public String toString() {
-        return "Node{" +
-                "id=" + id +
-                ", mod='" + mod + '\'' +
-                '}';
+        return "Node " +
+                "id: " + id +
+                ", speedmodifier:" + mod;
     }
 }

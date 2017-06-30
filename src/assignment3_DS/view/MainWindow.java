@@ -3,12 +3,17 @@ package assignment3_DS.view;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 import java.util.Observer;
 
 import assignment3_DS.model.Model;
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
 
 /**
- * Created by HSpor on 19.06.2017.
+ * Main windows is the default gui
+ *
+ * @author HSpor
  */
 public class MainWindow {
     private JButton loadGraphButton;
@@ -32,21 +37,14 @@ public class MainWindow {
 
     public MainWindow(Model model) {
         this.model = model;
-
-        Observer arcCountObserver = (o, arg) -> countArcInt.setText(((Integer) arg).toString());
-        Observer nodeCountObserver = (o, arg) -> countNodeInt.setText(((Integer) arg).toString());
-        Observer sumArcObserver = (o, arg) -> sumArcWeightInt.setText(((Integer) arg).toString());
-        Observer mainTextObserver = (o, arg) -> mainText.setText(arg.toString());
-
-        this.model.registerObservers(arcCountObserver, nodeCountObserver, sumArcObserver, mainTextObserver);
-
         JFrame frame = new JFrame("Graphinsight");
         frame.setResizable(false);
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        mainText.setText("Lorem ypselon");
+        setupObservers();
+        mainText.setText("N/A");
     }
 
     public void registerClickListeners(ActionListener loadGraphActionListener, ActionListener outputNodesActionListener, ActionListener outputOpsActionListener, ActionListener removeActionListener) {
@@ -56,12 +54,27 @@ public class MainWindow {
         removeButton.addActionListener(removeActionListener);
     }
 
-    public String getRevoveTextValue() {
+    public String getRemoveTextValue() {
         return textInputWeight.getText();
     }
 
-    public static void main(String[] args) {
-        new MainWindow(new Model());
+
+    private static String formatIteratorString(Iterator iterator) {
+        if (iterator == null) return "";
+        StringBuilder builder = new StringBuilder();
+        while (iterator.hasNext()) {
+            builder.append(iterator.next());
+            builder.append("\n");
+        }
+        return builder.toString();
+    }
+
+    private void setupObservers() {
+        Observer arcCountObserver = (o, arg) -> countArcInt.setText(arg.toString());
+        Observer nodeCountObserver = (o, arg) -> countNodeInt.setText(arg.toString());
+        Observer sumArcObserver = (o, arg) -> sumArcWeightInt.setText(arg.toString());
+        Observer mainTextObserver = (o, arg) -> mainText.setText(formatIteratorString((Iterator) arg));
+        model.registerObservers(arcCountObserver, nodeCountObserver, sumArcObserver, mainTextObserver);
     }
 
 
@@ -81,72 +94,72 @@ public class MainWindow {
      */
     private void $$$setupUI$$$() {
         mainPanel = new JPanel();
-        mainPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(5, 2, new Insets(0, 0, 0, 0), -1, -1));
+        mainPanel.setLayout(new GridLayoutManager(5, 2, new Insets(0, 0, 0, 0), -1, -1));
         loadGraphButton = new JButton();
         loadGraphButton.setText("load graph");
-        mainPanel.add(loadGraphButton, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(250, 20), null, new Dimension(250, 20), 0, false));
+        mainPanel.add(loadGraphButton, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(250, 20), null, new Dimension(250, 20), 0, false));
         final JPanel panel1 = new JPanel();
-        panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
-        mainPanel.add(panel1, new com.intellij.uiDesigner.core.GridConstraints(4, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel1.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
+        mainPanel.add(panel1, new GridConstraints(4, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         removeButton = new JButton();
         removeButton.setText("remove");
-        panel1.add(removeButton, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_EAST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(90, 20), null, new Dimension(90, 20), 0, false));
+        panel1.add(removeButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(90, 20), null, new Dimension(90, 20), 0, false));
         textInputWeight = new JTextField();
-        panel1.add(textInputWeight, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_EAST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(32, -1), null, null, 0, false));
+        panel1.add(textInputWeight, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(32, -1), null, null, 0, false));
         buttonDescriptionText = new JLabel();
         buttonDescriptionText.setHorizontalAlignment(4);
         buttonDescriptionText.setHorizontalTextPosition(2);
         buttonDescriptionText.setText("Remove all arcs with a weight bigger than:");
-        panel1.add(buttonDescriptionText, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(250, 20), null, new Dimension(250, 20), 0, false));
+        panel1.add(buttonDescriptionText, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(250, 20), null, new Dimension(250, 20), 0, false));
         countNodesPanel = new JPanel();
-        countNodesPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 4, new Insets(0, 0, 0, 0), -1, -1));
-        mainPanel.add(countNodesPanel, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(750, 20), null, 0, false));
+        countNodesPanel.setLayout(new GridLayoutManager(1, 4, new Insets(0, 0, 0, 0), -1, -1));
+        mainPanel.add(countNodesPanel, new GridConstraints(3, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(750, 20), null, 0, false));
         countNodeInt = new JLabel();
         countNodeInt.setHorizontalAlignment(2);
         countNodeInt.setHorizontalTextPosition(2);
         countNodeInt.setText("N/A");
-        countNodesPanel.add(countNodeInt, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(50, 20), null, new Dimension(50, 20), 0, false));
+        countNodesPanel.add(countNodeInt, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(50, 20), null, new Dimension(50, 20), 0, false));
         countNodeText = new JLabel();
         countNodeText.setHorizontalAlignment(4);
         countNodeText.setHorizontalTextPosition(4);
         countNodeText.setText("Count of nodes:");
-        countNodesPanel.add(countNodeText, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(100, 20), null, new Dimension(100, 20), 0, false));
+        countNodesPanel.add(countNodeText, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(100, 20), null, new Dimension(100, 20), 0, false));
         sumArcWeightsPanel = new JPanel();
-        sumArcWeightsPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
-        countNodesPanel.add(sumArcWeightsPanel, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        sumArcWeightsPanel.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
+        countNodesPanel.add(sumArcWeightsPanel, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         sumArcWeightText = new JLabel();
         sumArcWeightText.setHorizontalAlignment(4);
         sumArcWeightText.setHorizontalTextPosition(4);
         sumArcWeightText.setText("Sum of arcweights:");
-        sumArcWeightsPanel.add(sumArcWeightText, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(200, 20), null, new Dimension(200, 20), 1, false));
+        sumArcWeightsPanel.add(sumArcWeightText, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(200, 20), null, new Dimension(200, 20), 1, false));
         sumArcWeightInt = new JLabel();
         sumArcWeightInt.setHorizontalAlignment(2);
         sumArcWeightInt.setHorizontalTextPosition(2);
         sumArcWeightInt.setText("N/A");
-        sumArcWeightsPanel.add(sumArcWeightInt, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(50, 20), null, new Dimension(50, 20), 0, false));
+        sumArcWeightsPanel.add(sumArcWeightInt, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(50, 20), null, new Dimension(50, 20), 0, false));
         countArcsPanel = new JPanel();
-        countArcsPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
-        countNodesPanel.add(countArcsPanel, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(654, 54), null, 0, false));
+        countArcsPanel.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
+        countNodesPanel.add(countArcsPanel, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(654, 54), null, 0, false));
         countArcText = new JLabel();
         countArcText.setHorizontalAlignment(4);
         countArcText.setHorizontalTextPosition(4);
         countArcText.setText("Count of arcs:");
-        countArcsPanel.add(countArcText, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(200, 20), null, new Dimension(200, 20), 0, false));
+        countArcsPanel.add(countArcText, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(200, 20), null, new Dimension(200, 20), 0, false));
         countArcInt = new JLabel();
         countArcInt.setHorizontalAlignment(2);
         countArcInt.setHorizontalTextPosition(2);
         countArcInt.setText("N/A");
-        countArcsPanel.add(countArcInt, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(50, 20), null, new Dimension(50, 20), 0, false));
+        countArcsPanel.add(countArcInt, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(50, 20), null, new Dimension(50, 20), 0, false));
         outputNodesButton = new JButton();
         outputNodesButton.setText("output node list");
-        mainPanel.add(outputNodesButton, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(250, 20), null, new Dimension(250, 20), 0, false));
+        mainPanel.add(outputNodesButton, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(250, 20), null, new Dimension(250, 20), 0, false));
         outputOperationsButton = new JButton();
         outputOperationsButton.setText("output operations");
-        mainPanel.add(outputOperationsButton, new com.intellij.uiDesigner.core.GridConstraints(2, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, new Dimension(250, 20), null, new Dimension(250, 20), 0, false));
+        mainPanel.add(outputOperationsButton, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(250, 20), null, new Dimension(250, 20), 0, false));
         mainText = new JTextArea();
         mainText.setEditable(false);
         mainText.setText("");
-        mainPanel.add(mainText, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(750, 500), null, null, 0, false));
+        mainPanel.add(mainText, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(750, 500), null, null, 0, false));
     }
 
     /**

@@ -33,7 +33,7 @@ public class Controller {
         ActionListener removeActionListener = e -> {
 
             try {
-                removeArcsLongerThan(Integer.parseInt(mainWindow.getRevoveTextValue()));
+                removeArcsLongerThan(Integer.parseInt(mainWindow.getRemoveTextValue()));
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, "Input is not a number", "Error", JOptionPane.ERROR_MESSAGE);
             }

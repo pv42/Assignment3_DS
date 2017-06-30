@@ -69,12 +69,23 @@ public class Graph {
     //methodes added with Assignment4
 
     // todo ignore not connected
-    public Iterator<Node> getAllNodes() { //a
-        List<Node> list = new ArrayList<Node>();
-        for (int i = 0; i < nodes.size(); i++){
-        	list.add(nodes.get(i));
+    private List<Node> getNodesAvailableFromList(Node startNode) { //a
+        List<Node> usedNodes = new ArrayList<>();
+        List<Node> foundNodes = new ArrayList<>();
+        foundNodes.add(startNode);
+        while(!foundNodes.isEmpty()) {
+            Node node = foundNodes.remove(0);
+            if(!usedNodes.contains(node)) usedNodes.add(node);
+            getAllArcsBeginningAtNodeID(node.getID()).forEach(arc -> {
+                if((!foundNodes.contains(arc.getEnd())) && (!usedNodes.contains(arc.getEnd())))
+                    foundNodes.add(arc.getEnd());
+            });
         }
-        return list.iterator();
+        return usedNodes;
+    }
+
+    public Iterator<Node> getNodesAvailalbeFromIterator(Node startNode) {
+        return getNodesAvailableFromList(startNode).iterator();
     }
     
     // todo ignore not connected
@@ -107,19 +118,19 @@ public class Graph {
         return arcs.size();
     }
 
-    //todo what is this
-    public int getArcLengthSum() { //e
+    /**
+     * retuns the sum af all arc length available from a startnode
+     * @param startNode node to start from
+     * @return the arc length sum
+     */
+    public int getArcLengthSum(Node startNode) { //e
         int sum = 0;
-        for (int i = 0; i < arcs.size(); i++){
-        	found = false;
-        	int id = arcs.get(i).getStart().getID();
-        	suche(0, id);
-        	
-        	if (found){	
-        		sum = sum + arcs.get(i).getDistance();
-        	}
+        for(Node node : getNodesAvailableFromList(startNode)) {
+            for (Arc arc : getAllArcsBeginningAtNodeID(node.getID())) {
+                sum += arc.getDistance();
+            }
         }
-    	return sum;
+        return sum;
     }
 
     /**

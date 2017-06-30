@@ -26,7 +26,7 @@ public class Model {
     }
 
     public void requestNodeList(){
-        mainTextObservable.notifyChanged("Node List:");
+        mainTextObservable.notifyChanged(graph.getNodesAvailalbeFromIterator(graph.getNodeById(0))); // todo 0
     }
 
     public void requestOperationList(){
@@ -36,6 +36,7 @@ public class Model {
     public void setGraph(Graph graph) {
         this.graph = graph;
         notifyAllObservers();
+        mainTextObservable.notifyChanged(null);
     }
 
     public void registerObservers(Observer arcCountObserver, Observer nodeCountObserver, Observer sumArcWeightObserver, Observer mainTextObserver) {
