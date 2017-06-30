@@ -133,7 +133,10 @@ public class OpenDialog extends JDialog {
 
     private void onOK() {
         //((Controller.loadGraph(nodeFilePath, arcFilePath); //todo
-        if(arcFilePath == null || nodeFilePath == null) dispose();
+        if(arcFilePath == null || nodeFilePath == null) {
+            dispose();
+            return;
+        }
         resultActionListener.actionPerformed(null);
         dispose();
     }

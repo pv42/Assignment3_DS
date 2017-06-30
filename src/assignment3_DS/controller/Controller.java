@@ -23,7 +23,7 @@ public class Controller {
         ActionListener loadFromFileActionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loadGraph(openDialog.getNodeFilePath(), openDialog.getNodeFilePath());
+                loadGraph(openDialog.getNodeFilePath(), openDialog.getArcFilePath());
             }
         };
         ActionListener requestLoadGraphActionListener = e -> {
@@ -53,7 +53,7 @@ public class Controller {
 
     }
     public void removeArcsLongerThan(int weight) {
-        //model.removeArcsLongerThan(weight);
+        model.removeArcsLongerThan(weight);
     }
     public void loadGraph(File nodeFile, File arcFile) {
         model.setGraph(CSVLoader.loadGraph(nodeFile,arcFile));

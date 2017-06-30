@@ -11,7 +11,7 @@ import java.util.*;
 public class CSVLoader {
     //todo comment
     public static Graph loadGraph(File nodeFile, File arcFile) {
-        System.out.print("loading nodes/ars from " + nodeFile + " / " + arcFile);
+        System.out.println("loading nodes/ars from " + nodeFile + " / " + arcFile); //todo remove
         Map<Integer, Node> nodes = getNodes(nodeFile);
         List<Arc> arcs = getArcs(arcFile, nodes);
         if (arcs == null) return null;
@@ -72,6 +72,7 @@ public class CSVLoader {
      * @return a list of arcs read from the resource file or {@code null} if an arc doesn't find a start or end node
      */
     private static List<Arc> getArcs(File arcFilePath, Map<Integer, Node> nodes) {
+        System.out.println("load arc from" + arcFilePath);
         List<Arc> arcs = new ArrayList<>();
         String line = "";
         String splitBy = ";";
@@ -81,9 +82,8 @@ public class CSVLoader {
             bufferedReader = new BufferedReader(new FileReader(arcFilePath));
             bufferedReader.readLine();
             while ((line = bufferedReader.readLine()) != null) {
-
+                System.out.println("ln:" + line);
                 String[] arcAttributes = line.split(splitBy);
-                System.out.println("ar 0/1 :" + arcAttributes[0] + "-" + arcAttributes[1]);//todo
                 Node start = nodes.get(Integer.valueOf(arcAttributes[0]));
                 Node end = nodes.get(Integer.valueOf(arcAttributes[1]));
                 if (start == null || end == null) {

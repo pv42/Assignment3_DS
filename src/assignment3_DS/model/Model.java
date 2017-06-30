@@ -5,7 +5,6 @@ import assignment3_DS.graph.Graph;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Observable;
 import java.util.Observer;
 
 /**
@@ -44,5 +43,9 @@ public class Model {
         nodeCountObservable.addObserver(nodeCountObserver);
         sumArcWeightObservable.addObserver(sumArcWeightObserver);
         mainTextObservable.addObserver(mainTextObserver);
+    }
+
+    public void removeArcsLongerThan(int weight) {
+        graph.removeArcsLongerThan(weight);
     }
 }
