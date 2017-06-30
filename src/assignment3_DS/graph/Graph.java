@@ -66,10 +66,9 @@ public class Graph {
     }
     
     
-  //methodes added with Assignment4
+    //methodes added with Assignment4
 
-    
-    
+    // todo ignore not connected
     public Iterator<Node> getAllNodes() { //a
         List<Node> list = new ArrayList<Node>();
         for (int i = 0; i < nodes.size(); i++){
@@ -78,21 +77,21 @@ public class Graph {
         return list.iterator();
     }
     
-    
+    // todo ignore not connected
     public int getNodeNumber() { //b
         return nodes.size();
     }
     
-    
+    //todo ...
     public List<String> getNodeOperations() { //c
         List<String> list = new ArrayList<String>();
     	
     	for (int i = 0; i < nodes.size(); i++){
     		found = false;
         	int id = nodes.get(i).getID();
-        	suche(0, id);
+        	suche(0, id); //???
         	
-        	if (found){	
+        	if (found){	 //always false ...
         		String operation = nodes.get(i).getSpeedModifier();
 	        	if (!list.contains(operation)){
 	        		list.add(operation);
@@ -103,13 +102,13 @@ public class Graph {
     	return list;
     }
     
-    
+    //todo ignore not connected arcs
     public int getArcNumber() { //d
         return arcs.size();
     }
-    
-    
-    public int getArcLenghtSum() { //e
+
+    //todo what is this
+    public int getArcLengthSum() { //e
         int sum = 0;
         for (int i = 0; i < arcs.size(); i++){
         	found = false;
@@ -122,20 +121,17 @@ public class Graph {
         }
     	return sum;
     }
-    
-    
+
+    /**
+     * remove all arcs from the graph with length under a threshold
+     * @param x threshold
+     */
     public void removeArcsLongerThan(final int x) { //f
-        Iterator<Arc> it = arcs.iterator(); 
-    	while(it.hasNext()){
-    	    Arc arc = it.next();
-    	    if(arc.getDistance() > x){
-    	        it.remove();
-    	    }
-    	}
+        arcs.removeIf(arc -> arc.getDistance() > x);
     }
     
-    
-    void suche(int start, int end){
+    //todo what does this function? , it throws StackOverflowsErrors
+    void suche(int start, int end) {
     	for (int i = 0; i < arcs.size(); i++){
     		if (arcs.get(i).getStart().getID() == start){
     			if (arcs.get(i).getEnd().getID() == end){
