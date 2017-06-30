@@ -24,6 +24,7 @@ public class OpenDialog extends JDialog {
     public OpenDialog(ActionListener resultActionListener) {
         this.resultActionListener = resultActionListener;
     }
+
     public void setupAndShow() {
 
         setContentPane(contentPane);
@@ -132,7 +133,7 @@ public class OpenDialog extends JDialog {
     }
 
     private void onOK() {
-        if(arcFilePath == null || nodeFilePath == null) {
+        if (arcFilePath == null || nodeFilePath == null) {
             dispose();
             return;
         }
@@ -206,5 +207,4 @@ public class OpenDialog extends JDialog {
     public JComponent $$$getRootComponent$$$() {
         return contentPane;
     }
-
 }
