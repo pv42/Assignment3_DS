@@ -78,7 +78,9 @@
               </grid>
             </constraints>
             <properties>
-              <text value=""/>
+              <horizontalAlignment value="2"/>
+              <horizontalTextPosition value="2"/>
+              <text value="N/A"/>
             </properties>
           </component>
           <component id="9a9b3" class="javax.swing.JLabel" binding="countNodeText">
@@ -89,7 +91,9 @@
               </grid>
             </constraints>
             <properties>
-              <text value="Count of nodes"/>
+              <horizontalAlignment value="4"/>
+              <horizontalTextPosition value="4"/>
+              <text value="Count of nodes:"/>
             </properties>
           </component>
           <grid id="e323b" binding="sumArcWeightsPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -108,7 +112,9 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <text value="Sum of arcweights"/>
+                  <horizontalAlignment value="4"/>
+                  <horizontalTextPosition value="4"/>
+                  <text value="Sum of arcweights:"/>
                 </properties>
               </component>
               <component id="c99de" class="javax.swing.JLabel" binding="sumArcWeightInt">
@@ -119,7 +125,9 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <text value=""/>
+                  <horizontalAlignment value="2"/>
+                  <horizontalTextPosition value="2"/>
+                  <text value="N/A"/>
                 </properties>
               </component>
             </children>
@@ -142,7 +150,9 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <text value="Count of arcs"/>
+                  <horizontalAlignment value="4"/>
+                  <horizontalTextPosition value="4"/>
+                  <text value="Count of arcs:"/>
                 </properties>
               </component>
               <component id="935dc" class="javax.swing.JLabel" binding="countArcInt">
@@ -153,7 +163,9 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <text value=""/>
+                  <horizontalAlignment value="2"/>
+                  <horizontalTextPosition value="2"/>
+                  <text value="N/A"/>
                 </properties>
               </component>
             </children>
