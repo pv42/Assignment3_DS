@@ -1,4 +1,4 @@
-package assignment3_DS.graph;
+package assignment3_DS;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -16,6 +16,8 @@ public class Graph {
     private Map<Integer, Node> nodes;
     private List<Arc> arcs;
 
+    boolean found;
+    
     /**
      * creates a graph
      *
@@ -62,9 +64,12 @@ public class Graph {
         }
         return arcList;
     }
+    
+    
+  //methodes added with Assignment4
 
-    //methodes added with Assignment4
-
+    
+    
     public Iterator<Node> getAllNodes() { //a
         List<Node> list = new ArrayList<Node>();
         for (int i = 0; i < nodes.size(); i++){
@@ -83,9 +88,15 @@ public class Graph {
         List<String> list = new ArrayList<String>();
     	
     	for (int i = 0; i < nodes.size(); i++){
-        	String operation = nodes.get(i).toString().split("'")[1];
-        	if (!list.contains(operation)){
-        		list.add(operation);
+    		found = false;
+        	int id = nodes.get(i).getID();
+        	suche(0, id);
+        	
+        	if (found){	
+        		String operation = nodes.get(i).getSpeedModifier();
+	        	if (!list.contains(operation)){
+	        		list.add(operation);
+	        	}
         	}
         }
     	
@@ -101,7 +112,13 @@ public class Graph {
     public int getArcLenghtSum() { //e
         int sum = 0;
         for (int i = 0; i < arcs.size(); i++){
-        	sum += arcs.get(i).getDistance();
+        	found = false;
+        	int id = arcs.get(i).getStart().getID();
+        	suche(0, id);
+        	
+        	if (found){	
+        		sum = sum + arcs.get(i).getDistance();
+        	}
         }
     	return sum;
     }
@@ -116,4 +133,18 @@ public class Graph {
     	    }
     	}
     }
+    
+    
+    void suche(int start, int end){
+    	for (int i = 0; i < arcs.size(); i++){
+    		if (arcs.get(i).getStart().getID() == start){
+    			if (arcs.get(i).getEnd().getID() == end){
+        			found = true;
+        		}
+    			suche(arcs.get(i).getStart().getID(), end);
+    		}
+    	}
+    }
+    
+    
 }
