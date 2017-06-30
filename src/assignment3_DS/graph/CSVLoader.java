@@ -1,5 +1,6 @@
 package assignment3_DS.graph;
 
+
 import java.io.*;
 import java.util.*;
 
@@ -10,6 +11,7 @@ import java.util.*;
 public class CSVLoader {
     //todo comment
     public static Graph loadGraph(File nodeFile, File arcFile) {
+        System.out.print("loading nodes/ars from " + nodeFile + " / " + arcFile);
         Map<Integer, Node> nodes = getNodes(nodeFile);
         List<Arc> arcs = getArcs(arcFile, nodes);
         if (arcs == null) return null;
@@ -24,10 +26,7 @@ public class CSVLoader {
      * @return the graph with nodes and arcs loaded from files or {@code null} if there was a problem
      */
     public static Graph loadGraph(String nodeFilePath, String arcFilePath) {
-        Map<Integer, Node> nodes = getNodes(new File(nodeFilePath));
-        List<Arc> arcs = getArcs(new File(arcFilePath), nodes);
-        if (arcs == null) return null;
-        else return new Graph(nodes, arcs);
+        return loadGraph(new File(nodeFilePath), new File(arcFilePath));
     }
 
     /**
@@ -84,6 +83,7 @@ public class CSVLoader {
             while ((line = bufferedReader.readLine()) != null) {
 
                 String[] arcAttributes = line.split(splitBy);
+                System.out.println("ar 0/1 :" + arcAttributes[0] + "-" + arcAttributes[1]);//todo
                 Node start = nodes.get(Integer.valueOf(arcAttributes[0]));
                 Node end = nodes.get(Integer.valueOf(arcAttributes[1]));
                 if (start == null || end == null) {

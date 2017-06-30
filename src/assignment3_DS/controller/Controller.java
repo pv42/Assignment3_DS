@@ -15,11 +15,20 @@ import java.io.File;
  */
 public class Controller {
     private Model model;
+    private MainWindow mainWindow;
+    private OpenDialog openDialog;
     public Controller(){
         model = new Model();
         MainWindow mainWindow = new MainWindow(model);
-        ActionListener loadGraphActionListener = e -> {
-            OpenDialog.createGUI();
+        ActionListener loadFromFileActionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadGraph(openDialog.getNodeFilePath(), openDialog.getNodeFilePath());
+            }
+        };
+        ActionListener requestLoadGraphActionListener = e -> {
+            openDialog = new OpenDialog(loadFromFileActionListener);
+            openDialog.setupAndShow();
             //open a window to load a new graph on click
         };
         ActionListener outputNodesActionListener = e -> {
@@ -39,10 +48,12 @@ public class Controller {
                 JOptionPane.showMessageDialog(null, "Input is not a number", "Error", JOptionPane.ERROR_MESSAGE);
             }
         };
-        mainWindow.registerClickListeners(loadGraphActionListener,outputNodesActionListener,outputOperationsActionListener,removeActionListener);
+
+        mainWindow.registerClickListeners(requestLoadGraphActionListener,outputNodesActionListener,outputOperationsActionListener,removeActionListener);
+
     }
-    static public void removeArcsLongerThan(int weight) {
-        // todo
+    public void removeArcsLongerThan(int weight) {
+        //model.removeArcsLongerThan(weight);
     }
     public void loadGraph(File nodeFile, File arcFile) {
         model.setGraph(CSVLoader.loadGraph(nodeFile,arcFile));

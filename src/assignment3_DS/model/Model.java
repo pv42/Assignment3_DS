@@ -26,7 +26,6 @@ public class Model {
         mainTextObservable = new MyObservable();
         //arcCountObservable
     }
-    // todo remove static
 
     public void requestNodeList(){
         mainTextObservable.notifyChanged("Node List:");
