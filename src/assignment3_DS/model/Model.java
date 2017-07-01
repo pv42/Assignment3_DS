@@ -28,7 +28,7 @@ public class Model {
     }
 
     public void requestNodeList(){
-        mainTextObservable.notifyChanged(graph.getNodesAvailableFromIterator()); // todo startNode
+        mainTextObservable.notifyChanged(graph.getNodesAvailableFromIterator());
     }
 
     public void requestOperationList(){

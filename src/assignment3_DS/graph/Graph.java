@@ -104,13 +104,11 @@ public class Graph {
     public Iterator<Node> getNodesAvailableFromIterator() {
         return getNodesAvailableFromList(startNode).iterator();
     }
-    
-    // todo comment
+
     public int getNodeNumber() { //b
         return getNodesAvailableFromList(startNode).size();
     }
-    
-    //todo comment
+
     public Iterator<String> getNodeOperations() { //c
         List<String> list = new ArrayList<>();
     	
@@ -127,14 +125,11 @@ public class Graph {
         }
     	return list.iterator();
     }
-    
-    //todo comment // todo bed
+
     public int getArcNumber() { //d
         int count = 0;
         for(Node node : getNodesAvailableFromList(startNode)) {
-            for (Arc arc : getAllArcsBeginningAtNodeID(node.getID())) {
-                count ++;
-            }
+            count += getAllArcsBeginningAtNodeID(node.getID()).size();
         }
         return count;
     }
