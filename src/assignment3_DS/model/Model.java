@@ -2,13 +2,15 @@ package assignment3_DS.model;
 
 import assignment3_DS.controller.MyObservable;
 import assignment3_DS.graph.Graph;
+import assignment3_DS.graph.Node;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observer;
 
 /**
- * Created by pv42 on 24.06.2017.
+ * The underlying graph data
+ * @author pv42
  */
 public class Model {
     private Graph graph;
@@ -26,11 +28,11 @@ public class Model {
     }
 
     public void requestNodeList(){
-        mainTextObservable.notifyChanged(graph.getNodesAvailalbeFromIterator(graph.getNodeById(0))); // todo 0
+        mainTextObservable.notifyChanged(graph.getNodesAvailableFromIterator()); // todo startNode
     }
 
     public void requestOperationList(){
-        mainTextObservable.notifyChanged("Ops List:");
+        mainTextObservable.notifyChanged(graph.getNodeOperations());
     }
 
     public void setGraph(Graph graph) {
@@ -54,6 +56,6 @@ public class Model {
     private void notifyAllObservers() {
         arcCountObservable.notifyChanged(graph.getArcNumber());
         nodeCountObservable.notifyChanged(graph.getNodeNumber());
-        //sumArcWeightObservable.notifyChanged(graph.getArcLengthSum()); //todo use this after fixing it
+        sumArcWeightObservable.notifyChanged(graph.getArcLengthSum());
     }
 }

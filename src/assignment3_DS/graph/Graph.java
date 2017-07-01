@@ -15,8 +15,7 @@ import java.util.Map;
 public class Graph {
     private Map<Integer, Node> nodes;
     private List<Arc> arcs;
-
-    boolean found;
+    private Node startNode;
     
     /**
      * creates a graph
@@ -27,6 +26,7 @@ public class Graph {
     public Graph(Map<Integer, Node> nodes, List<Arc> arcs) {
         this.nodes = nodes;
         this.arcs = arcs;
+        startNode = nodes.get(0);
     }
 
     /**
@@ -50,6 +50,23 @@ public class Graph {
     }
 
     /**
+     * returns the start node
+     *
+     * @return the start node
+     */
+    public Node getStartNode() {
+        return startNode;
+    }
+
+    /**
+     * set the start node for assingment4
+     * @param startNode the node the assignment4 functions should start from
+     */
+    public void setStartNode(Node startNode) {
+        this.startNode = startNode;
+    }
+
+    /**
      * searches for all arcs beginning at a node
      *
      * @param nodeID id of node
@@ -66,9 +83,9 @@ public class Graph {
     }
     
     
-    //methodes added with Assignment4
+    //methods added with Assignment4
 
-    // todo ignore not connected
+
     private List<Node> getNodesAvailableFromList(Node startNode) { //a
         List<Node> usedNodes = new ArrayList<>();
         List<Node> foundNodes = new ArrayList<>();
@@ -84,46 +101,49 @@ public class Graph {
         return usedNodes;
     }
 
-    public Iterator<Node> getNodesAvailalbeFromIterator(Node startNode) {
+    public Iterator<Node> getNodesAvailableFromIterator() {
         return getNodesAvailableFromList(startNode).iterator();
     }
     
-    // todo ignore not connected
+    // todo comment
     public int getNodeNumber() { //b
-        return nodes.size();
+        return getNodesAvailableFromList(startNode).size();
     }
     
-    //todo ...
-    public List<String> getNodeOperations() { //c
-        List<String> list = new ArrayList<String>();
+    //todo comment
+    public Iterator<String> getNodeOperations() { //c
+        List<String> list = new ArrayList<>();
     	
-    	for (int i = 0; i < nodes.size(); i++){
-    		found = false;
-        	int id = nodes.get(i).getID();
-        	suche(0, id); //???
-        	
-        	if (found){	 //always false ...
-        		String operation = nodes.get(i).getSpeedModifier();
-	        	if (!list.contains(operation)){
-	        		list.add(operation);
-	        	}
-        	}
+    	for (Node node: getNodesAvailableFromList(startNode)){
+            String operation = node.getSpeedModifier();
+    	    if(!node.getSpeedModifier().equals("*speed"))
+                operation = operation.substring(0,1);
+            if (!list.contains(operation)){
+                list.add(operation);
+            }
         }
-    	
-    	return list;
+        for (int i = 0; i < list.size(); i++) {
+    	    list.set(i,"Operation : '" + list.get(i) + "'");
+        }
+    	return list.iterator();
     }
     
-    //todo ignore not connected arcs
+    //todo comment // todo bed
     public int getArcNumber() { //d
-        return arcs.size();
+        int count = 0;
+        for(Node node : getNodesAvailableFromList(startNode)) {
+            for (Arc arc : getAllArcsBeginningAtNodeID(node.getID())) {
+                count ++;
+            }
+        }
+        return count;
     }
 
     /**
-     * retuns the sum af all arc length available from a startnode
-     * @param startNode node to start from
+     * retuns the sum af all arc length available from the startnode
      * @return the arc length sum
      */
-    public int getArcLengthSum(Node startNode) { //e
+    public int getArcLengthSum() { //e
         int sum = 0;
         for(Node node : getNodesAvailableFromList(startNode)) {
             for (Arc arc : getAllArcsBeginningAtNodeID(node.getID())) {
@@ -137,21 +157,9 @@ public class Graph {
      * remove all arcs from the graph with length under a threshold
      * @param x threshold
      */
-    public void removeArcsLongerThan(final int x) { //f
+    public void removeArcsLongerThan(int x) { //f
         arcs.removeIf(arc -> arc.getDistance() > x);
     }
-    
-    //todo what does this function? , it throws StackOverflowsErrors
-    void suche(int start, int end) {
-    	for (int i = 0; i < arcs.size(); i++){
-    		if (arcs.get(i).getStart().getID() == start){
-    			if (arcs.get(i).getEnd().getID() == end){
-        			found = true;
-        		}
-    			suche(arcs.get(i).getStart().getID(), end);
-    		}
-    	}
-    }
-    
+
     
 }

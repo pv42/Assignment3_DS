@@ -8,6 +8,7 @@ import assignment3_DS.view.OpenDialog;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Created on 23.06.2017.
@@ -46,7 +47,16 @@ public class Controller {
         new Thread(() -> model.removeArcsLongerThan(weight)).start();
     }
     public void loadGraph(File nodeFile, File arcFile) {
-        new Thread(() -> model.setGraph(CSVLoader.loadGraph(nodeFile,arcFile))).start();
+        new Thread(() -> {
+            try {
+                model.setGraph(CSVLoader.loadGraph(nodeFile, arcFile));
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(null,"File reading failed","Failed loading graph", JOptionPane.ERROR_MESSAGE);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null,"File is of illegal format","Failed loading graph", JOptionPane.ERROR_MESSAGE);
+
+            }
+        }).start();
     }
 
 
