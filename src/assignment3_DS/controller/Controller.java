@@ -27,9 +27,9 @@ public class Controller {
             //open a window to load a new graph on click
         };
 
-        ActionListener outputNodesActionListener = e -> model.requestNodeList();
+        ActionListener outputNodesActionListener = e -> new Thread(() -> model.requestNodeList()).start();
 
-        ActionListener outputOperationsActionListener = e -> model.requestOperationList();
+        ActionListener outputOperationsActionListener = e -> new Thread(() -> model.requestOperationList()).start();
 
         ActionListener removeActionListener = e -> {
 
